@@ -5,6 +5,7 @@ import { materialEditor } from '@/fields/richText'
 import { withAuditLog } from '@/hooks/auditLog'
 import { enforceEditorialRules } from './hooks'
 import { revalidateMaterial } from '@/hooks/revalidate'
+import { postMaterialToTelegram } from '@/lib/server/telegram'
 import {
   PUBLIC_STATUSES,
   audienceOptions,
@@ -305,6 +306,12 @@ export const Materials: CollectionConfig = withAuditLog({
     defaultColumns: ['title', 'format', 'section', 'status', 'publishedAt'],
     listSearchableFields: ['title', 'lead'],
     group: L('Контент', 'Content'),
+    components: {
+      edit: {
+        // Кнопка «Надіслати в Telegram» рядом с «Зберегти»
+        beforeDocumentControls: ['@/components/admin/TelegramButton#TelegramButton'],
+      },
+    },
   },
   defaultSort: '-publishedAt',
   versions: { maxPerDoc: 100 },
@@ -338,6 +345,22 @@ export const Materials: CollectionConfig = withAuditLog({
     delete: chiefOnly,
     readVersions: ({ req }) => isStaff(req.user),
   },
+  endpoints: [
+    {
+      // POST /api/materials/:id/telegram — кнопка «Надіслати в Telegram»
+      path: '/:id/telegram',
+      method: 'post',
+      handler: async (req) => {
+        const id = Number(req.routeParams?.id)
+        if (!Number.isInteger(id)) return Response.json({ error: 'Bad id' }, { status: 400 })
+        const force = new URL(req.url ?? 'http://x').searchParams.get('force') === '1'
+        const result = await postMaterialToTelegram(req.payload, id, req, { force })
+        return result.ok
+          ? Response.json(result)
+          : Response.json({ error: result.error }, { status: result.status })
+      },
+    },
+  ],
   hooks: {
     beforeChange: [enforceEditorialRules],
     afterChange: [revalidateMaterial],

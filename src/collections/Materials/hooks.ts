@@ -27,7 +27,12 @@ export const enforceEditorialRules: CollectionBeforeChangeHook = async ({
   originalDoc,
   operation,
   req,
+  context,
 }) => {
+  // Отметка об отправке в Telegram (src/lib/server/telegram.ts) — серверный код передаёт только
+  // поле distribution; context нельзя задать через REST, поэтому обойти правила снаружи нельзя
+  if (context?.distributionOnly && operation === 'update') return data
+
   const user = req.user
   const prev: Data = operation === 'update' ? (originalDoc ?? {}) : {}
   const next: Data = { ...prev, ...data }

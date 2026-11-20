@@ -4,7 +4,8 @@ import { allPublishedMaterials } from '@/lib/feeds'
 import { getPayloadClient } from '@/lib/payload'
 import { siteUrl } from '@/lib/urls'
 
-export const revalidate = 3600
+// Не пререндерится при сборке (сборке не нужна база); кэш — на CDN
+export const dynamic = 'force-dynamic'
 
 /**
  * sitemap.xml: главные, разделы, рубрики, материалы (с hreflang-альтернативами), авторы, служебные страницы.

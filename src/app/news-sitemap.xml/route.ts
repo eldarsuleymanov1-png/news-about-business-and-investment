@@ -3,7 +3,8 @@ import { allPublishedMaterials, xmlEscape } from '@/lib/feeds'
 import { getPayloadClient } from '@/lib/payload'
 import { siteUrl } from '@/lib/urls'
 
-export const revalidate = 600
+// Не пререндерится при сборке (сборке не нужна база); кэш — на CDN (заголовок ниже)
+export const dynamic = 'force-dynamic'
 
 /**
  * Google News sitemap: материалы за последние 48 часов (требование Google), до 1000 адресов.
@@ -40,5 +41,8 @@ export async function GET() {
 ${urls.join('\n')}
 </urlset>
 `
-  return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } })
+  return new Response(xml, { headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=3600',
+    } })
 }

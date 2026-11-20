@@ -33,15 +33,11 @@ pnpm dev
 | `pnpm migrate` | Застосувати міграції |
 | `pnpm generate:types` | Оновити `src/payload-types.ts` |
 | `pnpm generate:importmap` | Оновити import map адмінки (після додавання кастомних компонентів) |
-| `pnpm test:int` | Інтеграційні тести редакційних правил (окрема БД `<назва>_test`) |
+| `pnpm test:int` | Інтеграційні тести (перед запуском перестворює БД `<назва>_test`) |
 | `pnpm test:e2e` | Браузерні тести публічної частини |
 | `pnpm lint`, `pnpm typecheck` | Перевірки коду |
 
-Для інтеграційних тестів потрібна порожня база `investnews_test` (або змінна `TEST_DATABASE_URL`):
-
-```bash
-docker compose exec postgres createdb -U investnews investnews_test
-```
+Інтеграційні тести самі перестворюють базу `<назва>_test` (або `TEST_DATABASE_URL`, назва має закінчуватися на `_test`).
 
 ## Зміна схеми даних
 
@@ -59,7 +55,15 @@ docker compose exec postgres createdb -U investnews investnews_test
 2. PostgreSQL — керована база (Neon або Supabase, регіон ЄС). Рядок підключення — у `DATABASE_URL`.
 3. Файли — Cloudflare R2: створіть бакет, ключ доступу та публічний домен (custom domain) → змінні `S3_*` і `S3_PUBLIC_URL`.
    Адмінка завантажує файли напряму в R2 (`clientUploads`), тож ліміт Vercel 4,5 МБ на запит не заважає.
-4. Решта змінних — з `.env.example` (`PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL`, `BEEHIIV_*`…).
+   **CORS бакета R2** (Settings → CORS policy) — дозволити `PUT, POST, GET` з домену сайту, інакше пряме
+   завантаження з адмінки та форми «Перевірте проєкт» не працюватиме:
+   ```json
+   [{ "AllowedOrigins": ["https://<домен>"], "AllowedMethods": ["GET", "PUT", "POST"], "AllowedHeaders": ["*"], "MaxAgeSeconds": 3600 }]
+   ```
+   На Vercel R2 обовʼязковий: файлова система там лише для читання.
+4. Решта змінних — з `.env.example` (`PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL`, `BEEHIIV_*`, `TELEGRAM_*`,
+   `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`).
+   Без ключів Turnstile у продакшені форми відхиляються (захист від спаму не можна «забути»).
 5. Міграції застосовуються автоматично під час першого запиту до нового деплою (`prodMigrations`).
 6. Домен підключіть через Cloudflare (DNS, WAF). Для `elinvestments.*` → CNAME на Vercel.
 
@@ -99,7 +103,9 @@ src/
   i18n/config.ts               мовні версії: URL-префікс ua ↔ код uk
   seed/                        розділи й рубрики з ТЗ, демо-наповнення
   components/templates/        шаблони сторінок: головна, матеріал, перевірка
-  actions/                     серверні дії (підписка Beehiiv)
+  actions/                     серверні дії: підписка, «Перевірте проєкт», помилка, згода на cookies
+  lib/server/                  Turnstile, підписані токени, закриті файли, Telegram
+  app/sitemap.ts, robots.ts    SEO; news-sitemap.xml, [lang]/rss.xml — стрічки
   migrations/                  міграції БД
   app/(frontend)/[lang]/…      публічний сайт
   app/(payload)/…              адмінка та API (генерується Payload)

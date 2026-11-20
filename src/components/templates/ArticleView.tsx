@@ -11,6 +11,7 @@ import { Cover } from '../Cover'
 import { RichText } from '../RichText'
 import { ShareButtons } from '../ShareButtons'
 import { Subscribe } from '../Subscribe'
+import { ErrorReport } from '../ErrorReport'
 
 type Props = {
   material: Material
@@ -226,6 +227,7 @@ export function ArticleView({ material: m, locale, url, disclaimer, related }: P
         {DISCLAIMER_FORMATS.includes(m.format as never) && (
           <p className="disclaimer">{disclaimer}</p>
         )}
+        <ErrorReport materialId={m.id} locale={locale} />
       </article>
 
       <aside className="article-sidebar">

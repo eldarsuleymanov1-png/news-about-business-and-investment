@@ -116,6 +116,21 @@ const dict = {
     footerPartners: 'Партнерам',
     footerDisclaimer:
       'Матеріали сайту не є інвестиційною порадою. Рішення про інвестиції ви приймаєте самостійно.',
+    errorReport: {
+      button: 'Повідомити про помилку',
+      hint: 'Або виділіть текст і натисніть Ctrl+Enter.',
+      title: 'Повідомити про помилку',
+      selected: 'Фрагмент з помилкою',
+      comment: 'Що не так',
+      commentHint: 'Якщо знаєте, як правильно, — напишіть і, бажано, дайте джерело.',
+      email: 'Електронна пошта (необовʼязково, щоб ми могли уточнити)',
+      send: 'Надіслати',
+      cancel: 'Скасувати',
+      thanks: 'Дякуємо! Редакція перевірить і, якщо треба, виправить. Виправлення публікуємо в журналі.',
+      errText: 'Виділіть фрагмент або опишіть помилку.',
+      errCaptcha: 'Підтвердіть, що ви не робот, і спробуйте ще раз.',
+      errServer: 'Не вдалося надіслати. Спробуйте пізніше.',
+    },
     checkRequest: {
       title: 'Перевірте проєкт',
       intro:
@@ -252,6 +267,21 @@ const dict = {
     footerPartners: 'Partners',
     footerDisclaimer:
       'Content on this site is not investment advice. You make investment decisions yourself.',
+    errorReport: {
+      button: 'Report an error',
+      hint: 'Or select text and press Ctrl+Enter.',
+      title: 'Report an error',
+      selected: 'Text with the error',
+      comment: 'What is wrong',
+      commentHint: 'If you know the correct version, write it and ideally give a source.',
+      email: 'Email (optional, so we can follow up)',
+      send: 'Send',
+      cancel: 'Cancel',
+      thanks: 'Thank you! The newsroom will check and correct it if needed. Corrections are published in the log.',
+      errText: 'Select the text or describe the error.',
+      errCaptcha: 'Please confirm you are not a robot and try again.',
+      errServer: 'Could not send. Please try again later.',
+    },
     checkRequest: {
       title: 'Check a project',
       intro:

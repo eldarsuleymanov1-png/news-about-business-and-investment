@@ -9,6 +9,7 @@ import { Breadcrumbs } from '../Breadcrumbs'
 import { CheckIcon, WarningIcon } from '../Icons'
 import { RichText } from '../RichText'
 import { ShareButtons } from '../ShareButtons'
+import { ErrorReport } from '../ErrorReport'
 
 type Props = { material: Material; locale: Locale; url: string; submitHref: string }
 
@@ -247,6 +248,7 @@ export function CheckView({ material: m, locale, url, submitHref }: Props) {
         </Link>
       </section>
 
+      <ErrorReport materialId={m.id} locale={locale} />
       <p className="disclaimer disclaimer--plain">{dict.checkDisclaimer}</p>
     </div>
   )

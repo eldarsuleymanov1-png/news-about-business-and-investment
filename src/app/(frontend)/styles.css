@@ -2017,3 +2017,43 @@ select.input {
 .turnstile {
   min-height: 0;
 }
+
+/* ------------------------------------------------------------------ повідомлення про помилку */
+
+.report-error {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  font-size: 13px;
+}
+.dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  border: 0;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 0.25);
+  color: var(--text);
+}
+.dialog::backdrop {
+  background: rgb(18 20 23 / 0.55);
+}
+.dialog__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+.dialog__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 24px;
+}
+.dialog .field {
+  flex: 0 0 auto;
+}
+.input--quote {
+  background: var(--surface-2);
+  min-height: 80px;
+}

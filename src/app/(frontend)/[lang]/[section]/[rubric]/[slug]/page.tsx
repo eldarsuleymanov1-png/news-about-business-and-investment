@@ -123,7 +123,7 @@ export default async function MaterialPage({ params }: Params) {
           material={m}
           locale={locale}
           url={url}
-          submitHref={`/${prefixFromLocale(locale)}/checks#submit`}
+          submitHref={`/${prefixFromLocale(locale)}/check-request`}
         />
       </PageShell>
     )

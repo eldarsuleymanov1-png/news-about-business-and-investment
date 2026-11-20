@@ -19,7 +19,6 @@ import { Materials } from './collections/Materials'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Regions } from './collections/Regions'
-import { RequestFiles } from './collections/RequestFiles'
 import { Rubrics } from './collections/Rubrics'
 import { Sections } from './collections/Sections'
 import { Tags } from './collections/Tags'
@@ -61,7 +60,6 @@ const plugins: Plugin[] = [
         : true,
       // Закрытые файлы отдаются только через Payload с проверкой прав
       evidence: { signedDownloads: true },
-      'request-files': { signedDownloads: true },
     },
     bucket: process.env.S3_BUCKET || 'not-configured',
     // Vercel ограничивает тело запроса 4,5 МБ — файлы из админки грузятся напрямую в R2
@@ -115,7 +113,6 @@ export default buildConfig({
     withAuditLog(Companies),
     withAuditLog(CheckRequests),
     withAuditLog(Evidence),
-    RequestFiles,
     withAuditLog(Corrections),
     ErrorReports,
     withAuditLog(Users),

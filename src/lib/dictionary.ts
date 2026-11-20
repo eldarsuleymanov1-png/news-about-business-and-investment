@@ -116,6 +116,32 @@ const dict = {
     footerPartners: 'Партнерам',
     footerDisclaimer:
       'Матеріали сайту не є інвестиційною порадою. Рішення про інвестиції ви приймаєте самостійно.',
+    checkRequest: {
+      title: 'Перевірте проєкт',
+      intro:
+        'Сумніваєтесь у компанії чи інвестиційному проєкті? Надішліть назву й посилання — ми перевіримо за відкритою методологією і повідомимо вас про результат. Ми не розкриваємо, хто надіслав запит.',
+      projectName: 'Назва проєкту або компанії',
+      url: 'Посилання на сайт або сторінку',
+      urlHint: 'Сайт, сторінка в соцмережах або Telegram-канал проєкту.',
+      description: 'Що вас насторожило',
+      descriptionHint: 'Що обіцяють, скільки просять вкласти, як ви дізналися про проєкт.',
+      files: 'Файли (необовʼязково)',
+      filesHint:
+        'До 5 файлів, кожен до 10 МБ: договори, скриншоти, листування. PDF, зображення, Word, Excel.',
+      email: 'Ваша електронна пошта',
+      emailHint: 'Лише щоб повідомити результат. Не публікуємо й не передаємо.',
+      consent: 'Погоджуюсь на обробку персональних даних згідно з',
+      privacyPolicy: 'політикою конфіденційності',
+      submit: 'Надіслати на перевірку',
+      sending: 'Надсилаємо…',
+      uploading: 'Завантажуємо файли: {done} з {total}',
+      success: 'Дякуємо! Заявку отримано. Ми напишемо вам, коли перевірка буде готова.',
+      successFilesFailed:
+        'Заявку отримано, але не всі файли завантажилися. Якщо вони важливі, надішліть їх у відповідь на наш лист.',
+      fileTooBig: 'Кожен файл — до 10 МБ.',
+      tooManyFiles: 'Не більше 5 файлів.',
+      howWeCheck: 'Як ми перевіряємо проєкти',
+    },
     notFound: 'Сторінку не знайдено',
     notFoundText: 'Можливо, матеріал перенесли або видалили.',
     toHome: 'На головну',
@@ -226,6 +252,34 @@ const dict = {
     footerPartners: 'Partners',
     footerDisclaimer:
       'Content on this site is not investment advice. You make investment decisions yourself.',
+    checkRequest: {
+      title: 'Check a project',
+      intro:
+        'Doubts about a company or an investment project? Send us the name and a link — we will check it using an open methodology and let you know the result. We never disclose who sent a request.',
+      projectName: 'Project or company name',
+      url: 'Link to the website or page',
+      urlHint: 'Website, social media page or Telegram channel of the project.',
+      description: 'What worried you',
+      descriptionHint:
+        'What they promise, how much they ask to invest, how you heard about the project.',
+      files: 'Files (optional)',
+      filesHint:
+        'Up to 5 files, 10 MB each: contracts, screenshots, messages. PDF, images, Word, Excel.',
+      email: 'Your email',
+      emailHint: 'Only to tell you the result. Never published or shared.',
+      consent: 'I agree to the processing of personal data under the',
+      privacyPolicy: 'privacy policy',
+      submit: 'Send for checking',
+      sending: 'Sending…',
+      uploading: 'Uploading files: {done} of {total}',
+      success:
+        'Thank you! We have received your request and will email you when the check is ready.',
+      successFilesFailed:
+        'We received your request, but not all files were uploaded. If they matter, reply to our email with them.',
+      fileTooBig: 'Each file must be up to 10 MB.',
+      tooManyFiles: 'No more than 5 files.',
+      howWeCheck: 'How we check projects',
+    },
     notFound: 'Page not found',
     notFoundText: 'The material may have been moved or removed.',
     toHome: 'Go to homepage',

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { locales, prefixFromLocale } from '@/i18n/config'
 import { getDictionary, requireLocale } from '@/lib/dictionary'
 import { parseFilters, type SearchParams } from '@/lib/filters'
-import { getPageBySlug, getRubrics, getSectionBySlug, getSiteSettings } from '@/lib/payload'
+import { getPageBySlug, getRubrics, getSectionBySlug } from '@/lib/payload'
 import { rubricHref, sectionHref } from '@/lib/urls'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { Listing } from '@/components/Listing'
@@ -53,10 +53,7 @@ export default async function SectionPage({ params, searchParams }: Props) {
 
   const dict = getDictionary(locale)
   const filters = parseFilters(await searchParams)
-  const [rubrics, settings] = await Promise.all([
-    getRubrics(section.id, locale),
-    getSiteSettings(locale),
-  ])
+  const rubrics = await getRubrics(section.id, locale)
   const basePath = sectionHref(slug, locale)
 
   return (
@@ -91,15 +88,9 @@ export default async function SectionPage({ params, searchParams }: Props) {
             <h2>{dict.doubtTitle}</h2>
             <p>{dict.doubtText}</p>
           </div>
-          {/* Форма «Перевірте проєкт» з Turnstile — наступний етап; поки що лист у редакцію */}
-          {settings.publisher?.email && (
-            <a
-              href={`mailto:${settings.publisher.email}?subject=${encodeURIComponent(dict.submitProject)}`}
-              className="btn btn--light"
-            >
-              {dict.submitProject}
-            </a>
-          )}
+          <Link href={`/${prefixFromLocale(locale)}/check-request`} className="btn btn--light">
+            {dict.submitProject}
+          </Link>
         </section>
       )}
     </PageShell>

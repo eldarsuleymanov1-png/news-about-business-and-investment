@@ -2,8 +2,9 @@ import type { CollectionConfig } from 'payload'
 import { chiefOnly, editorialOnly, staffOnly } from '@/access/roles'
 
 /**
- * Заявки читателей «Перевірте проєкт». Публичная форма создаёт их через серверный обработчик
- * (с проверкой Cloudflare Turnstile), напрямую через API создать заявку нельзя.
+ * Заявки читателей «Перевірте проєкт». Публичная форма (src/actions/checkRequest.ts) создаёт их
+ * через local API после проверки Cloudflare Turnstile; через публичный API создать заявку нельзя.
+ * Файлы заявителя — в закрытом хранилище (src/lib/server/privateFiles.ts), скачивание — только сотрудникам.
  */
 export const CheckRequests: CollectionConfig = {
   slug: 'check-requests',
@@ -57,12 +58,30 @@ export const CheckRequests: CollectionConfig = {
       label: { uk: 'Опис', en: 'Description' },
     },
     {
-      name: 'files',
-      type: 'upload',
-      relationTo: 'request-files',
-      hasMany: true,
+      name: 'attachments',
+      type: 'array',
+      label: { uk: 'Файли від заявника', en: 'Attachments' },
       maxRows: 5,
-      label: { uk: 'Файли', en: 'Files' },
+      admin: {
+        readOnly: true,
+        description: {
+          uk: 'Файли зберігаються закрито. Відкривайте з обережністю — їх надіслав невідомий читач.',
+          en: 'Stored privately. Open with care — sent by an unknown reader.',
+        },
+        components: { RowLabel: '@/components/admin/AttachmentRowLabel#AttachmentRowLabel' },
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true, label: { uk: 'Назва', en: 'Name' } },
+        { name: 'key', type: 'text', required: true, admin: { hidden: true } },
+        { name: 'size', type: 'number', label: { uk: 'Розмір, байт', en: 'Size, bytes' } },
+        { name: 'mimeType', type: 'text', label: { uk: 'Тип', en: 'Type' } },
+        {
+          name: 'uploaded',
+          type: 'checkbox',
+          defaultValue: false,
+          label: { uk: 'Завантажено', en: 'Uploaded' },
+        },
+      ],
     },
     {
       name: 'email',

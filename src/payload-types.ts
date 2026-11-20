@@ -78,7 +78,6 @@ export interface Config {
     companies: Company;
     'check-requests': CheckRequest;
     evidence: Evidence;
-    'request-files': RequestFile;
     corrections: Correction;
     'error-reports': ErrorReport;
     users: User;
@@ -105,7 +104,6 @@ export interface Config {
     companies: CompaniesSelect<false> | CompaniesSelect<true>;
     'check-requests': CheckRequestsSelect<false> | CheckRequestsSelect<true>;
     evidence: EvidenceSelect<false> | EvidenceSelect<true>;
-    'request-files': RequestFilesSelect<false> | RequestFilesSelect<true>;
     corrections: CorrectionsSelect<false> | CorrectionsSelect<true>;
     'error-reports': ErrorReportsSelect<false> | ErrorReportsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -618,7 +616,19 @@ export interface CheckRequest {
   projectName: string;
   url?: string | null;
   description: string;
-  files?: (number | RequestFile)[] | null;
+  /**
+   * Stored privately. Open with care — sent by an unknown reader.
+   */
+  attachments?:
+    | {
+        name: string;
+        key: string;
+        size?: number | null;
+        mimeType?: string | null;
+        uploaded?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   email: string;
   locale?: ('uk' | 'en') | null;
   company?: (number | null) | Company;
@@ -626,26 +636,6 @@ export interface CheckRequest {
   internalNotes?: string | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "request-files".
- */
-export interface RequestFile {
-  id: number;
-  prefix?: string | null;
-  _objectKey?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -759,10 +749,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'evidence';
         value: number | Evidence;
-      } | null)
-    | ({
-        relationTo: 'request-files';
-        value: number | RequestFile;
       } | null)
     | ({
         relationTo: 'corrections';
@@ -1142,7 +1128,16 @@ export interface CheckRequestsSelect<T extends boolean = true> {
   projectName?: T;
   url?: T;
   description?: T;
-  files?: T;
+  attachments?:
+    | T
+    | {
+        name?: T;
+        key?: T;
+        size?: T;
+        mimeType?: T;
+        uploaded?: T;
+        id?: T;
+      };
   email?: T;
   locale?: T;
   company?: T;
@@ -1163,25 +1158,6 @@ export interface EvidenceSelect<T extends boolean = true> {
   notes?: T;
   isPublic?: T;
   retainUntil?: T;
-  prefix?: T;
-  _objectKey?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "request-files_select".
- */
-export interface RequestFilesSelect<T extends boolean = true> {
   prefix?: T;
   _objectKey?: T;
   updatedAt?: T;

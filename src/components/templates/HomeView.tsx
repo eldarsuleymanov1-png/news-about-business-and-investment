@@ -285,7 +285,7 @@ async function ChecksBand({ locale, dict, aud }: Omit<BlockProps, 'shown'> & { d
           </h2>
           <p>{dict.checksIntro}</p>
         </div>
-        <Link href={`${base}/checks#submit`} className="btn btn--light">
+        <Link href={`${base}/check-request`} className="btn btn--light">
           {dict.submitProject}
         </Link>
       </div>

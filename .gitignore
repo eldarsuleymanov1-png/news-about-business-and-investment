@@ -52,3 +52,4 @@ node_modules/
 # uploads (локальне сховище файлів у розробці)
 /evidence
 /request-files
+/.private-files

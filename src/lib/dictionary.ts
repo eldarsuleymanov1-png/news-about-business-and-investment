@@ -126,7 +126,8 @@ const dict = {
       email: 'Електронна пошта (необовʼязково, щоб ми могли уточнити)',
       send: 'Надіслати',
       cancel: 'Скасувати',
-      thanks: 'Дякуємо! Редакція перевірить і, якщо треба, виправить. Виправлення публікуємо в журналі.',
+      thanks:
+        'Дякуємо! Редакція перевірить і, якщо треба, виправить. Виправлення публікуємо в журналі.',
       errText: 'Виділіть фрагмент або опишіть помилку.',
       errCaptcha: 'Підтвердіть, що ви не робот, і спробуйте ще раз.',
       errServer: 'Не вдалося надіслати. Спробуйте пізніше.',
@@ -277,7 +278,8 @@ const dict = {
       email: 'Email (optional, so we can follow up)',
       send: 'Send',
       cancel: 'Cancel',
-      thanks: 'Thank you! The newsroom will check and correct it if needed. Corrections are published in the log.',
+      thanks:
+        'Thank you! The newsroom will check and correct it if needed. Corrections are published in the log.',
       errText: 'Select the text or describe the error.',
       errCaptcha: 'Please confirm you are not a robot and try again.',
       errServer: 'Could not send. Please try again later.',

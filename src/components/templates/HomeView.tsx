@@ -2,7 +2,9 @@ import Link from 'next/link'
 import type { Where } from 'payload'
 import { prefixFromLocale, type Locale } from '@/i18n/config'
 import { getDictionary, type Dictionary } from '@/lib/dictionary'
-import { getHomepage, getRubrics, getSections, listMaterials } from '@/lib/payload'
+import { getHomepage, getRubrics, getSections, getSiteSettings, listMaterials } from '@/lib/payload'
+import { organization, website } from '@/lib/seo'
+import { JsonLd } from '../JsonLd'
 import { materialHref, rubricHref, sectionHref } from '@/lib/urls'
 import { audienceOptions } from '@/collections/Materials/options'
 import { Kicker, MaterialCard } from '../MaterialCard'
@@ -33,7 +35,14 @@ export async function HomeView({ locale, audience }: { locale: Locale; audience?
   const dict = getDictionary(locale)
   const aud: Where = audience ? { audience: { contains: audience } } : {}
 
-  const [home, sections] = await Promise.all([getHomepage(locale), getSections(locale)])
+  const [home, sections, settings] = await Promise.all([
+    getHomepage(locale),
+    getSections(locale),
+    getSiteSettings(locale),
+  ])
+  const sameAs = Object.values(settings.social ?? {}).filter(
+    (v): v is string => typeof v === 'string' && !!v,
+  )
   const bySlug = (slug?: string) => sections.find((s) => s.slug === slug)
   const configured = (home.blocks ?? []).filter((b) => !b.hidden) as Block[]
   const blocks: Block[] = configured.length
@@ -87,6 +96,12 @@ export async function HomeView({ locale, audience }: { locale: Locale; audience?
   const base = `/${prefixFromLocale(locale)}`
   return (
     <PageShell locale={locale} header="full" mainClassName="page--home">
+      <JsonLd
+        data={[
+          { '@context': 'https://schema.org', ...organization(settings.siteName, sameAs) },
+          website(settings.siteName, locale),
+        ]}
+      />
       <nav className="audience-filter" aria-label={dict.showFor}>
         <span className="muted">{dict.showFor}</span>
         <Link href={base} className="pill" aria-current={!audience ? 'true' : undefined}>

@@ -12,11 +12,13 @@ import {
   getSiteSettings,
   listMaterials,
 } from '@/lib/payload'
-import { materialHref, siteUrl } from '@/lib/urls'
+import { materialHref, rubricHref, sectionHref, siteUrl } from '@/lib/urls'
 import { PageShell } from '@/components/PageShell'
+import { JsonLd } from '@/components/JsonLd'
+import { articleSchema, breadcrumbs } from '@/lib/seo'
 import { ArticleView } from '@/components/templates/ArticleView'
 import { CheckView } from '@/components/templates/CheckView'
-import type { Material } from '@/payload-types'
+import type { Material, Rubric, Section } from '@/payload-types'
 
 export const revalidate = 60
 
@@ -116,9 +118,29 @@ export default async function MaterialPage({ params }: Params) {
   const url = `${siteUrl()}${path}`
   const [alternates, settings] = await Promise.all([alternatesFor(m), getSiteSettings(locale)])
 
+  const section = m.section as Section
+  const rubric = m.rubric as Rubric
+  const sameAs = Object.values(settings.social ?? {}).filter(
+    (v): v is string => typeof v === 'string' && !!v,
+  )
+  const schema = (
+    <JsonLd
+      data={[
+        ...articleSchema(m, locale, settings.siteName, sameAs),
+        breadcrumbs([
+          { name: settings.siteName, path: `/${prefixFromLocale(locale)}` },
+          { name: section.title, path: sectionHref(section.slug!, locale) },
+          { name: rubric.title, path: rubricHref(section.slug!, rubric.slug!, locale) },
+          { name: m.title, path },
+        ]),
+      ]}
+    />
+  )
+
   if (m.format === 'check') {
     return (
       <PageShell locale={locale} alternates={alternates} activeSection={p.section}>
+        {schema}
         <CheckView
           material={m}
           locale={locale}
@@ -144,6 +166,7 @@ export default async function MaterialPage({ params }: Params) {
 
   return (
     <PageShell locale={locale} alternates={alternates} activeSection={p.section}>
+      {schema}
       <ArticleView
         material={m}
         locale={locale}

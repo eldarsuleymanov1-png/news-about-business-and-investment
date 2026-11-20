@@ -8,6 +8,7 @@ import { siteUrl } from '@/lib/urls'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { MaterialCard } from '@/components/MaterialCard'
 import { PageShell } from '@/components/PageShell'
+import { JsonLd } from '@/components/JsonLd'
 import { Pagination } from '@/components/Pagination'
 import type { Media } from '@/payload-types'
 
@@ -80,10 +81,7 @@ export default async function AuthorPage({ params, searchParams }: Props) {
         locales.map((l) => [l.code, `/${l.urlPrefix}/authors/${slug}`]),
       )}
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <Breadcrumbs
         label={dict.home}
         items={[

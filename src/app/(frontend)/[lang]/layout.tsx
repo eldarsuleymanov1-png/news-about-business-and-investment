@@ -43,7 +43,10 @@ export default async function LangLayout({
   const hreflang = locales.find((l) => l.code === locale)!.hreflang
   return (
     <html lang={hreflang} className={`${inter.variable} ${serif.variable}`}>
-      <body>{children}</body>
+      <body>
+        <link rel="alternate" type="application/rss+xml" title="RSS" href={`/${lang}/rss.xml`} />
+        {children}
+      </body>
     </html>
   )
 }

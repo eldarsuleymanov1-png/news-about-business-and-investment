@@ -11,22 +11,32 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 export async function reportError(form: FormData): Promise<ErrorReportResult> {
   if (String(form.get('company') ?? '').trim()) return { ok: true } // ловушка для ботов
-  const selectedText = String(form.get('selectedText') ?? '').trim().slice(0, 1000)
-  const comment = String(form.get('comment') ?? '').trim().slice(0, 2000)
-  const emailRaw = String(form.get('email') ?? '').trim().toLowerCase().slice(0, 254)
+  const selectedText = String(form.get('selectedText') ?? '')
+    .trim()
+    .slice(0, 1000)
+  const comment = String(form.get('comment') ?? '')
+    .trim()
+    .slice(0, 2000)
+  const emailRaw = String(form.get('email') ?? '')
+    .trim()
+    .toLowerCase()
+    .slice(0, 254)
   const materialId = Number(form.get('materialId'))
   const pageUrl = String(form.get('pageUrl') ?? '').slice(0, 500)
   if (selectedText.length < 2 && comment.length < 5) return { ok: false, error: 'text' }
 
   const h = await headers()
   const ip = h.get('cf-connecting-ip') ?? h.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null
-  if (!(await verifyTurnstile(String(form.get('cf-turnstile-response') ?? ''), ip))) return { ok: false, error: 'captcha' }
+  if (!(await verifyTurnstile(String(form.get('cf-turnstile-response') ?? ''), ip)))
+    return { ok: false, error: 'captcha' }
 
   try {
     const payload = await getPayloadClient()
     // Материал должен существовать и быть опубликованным (проверка правами читателя)
     const material = Number.isInteger(materialId)
-      ? await payload.findByID({ collection: 'materials', id: materialId, depth: 0, overrideAccess: false }).catch(() => null)
+      ? await payload
+          .findByID({ collection: 'materials', id: materialId, depth: 0, overrideAccess: false })
+          .catch(() => null)
       : null
     await payload.create({
       collection: 'error-reports',

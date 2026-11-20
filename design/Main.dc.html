@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Головна сторінка</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFBF9}
+a{color:#121417;text-decoration:none}
+a:hover{color:#0F6B4C;text-decoration:underline}
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; color: #121417; background: #FBFBF9; min-height: 100vh">
+
+  <!-- Top bar -->
+  <div style="border-bottom: 1px solid #E3E4DF; background: #FFFFFF">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; font-size: 13px; color: #5B616B">
+      <span>П'ятниця, 20 листопада 2026</span>
+      <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap">
+        <a href="#" style="color: #5B616B; display: flex; align-items: center; gap: 6px">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l6 2 2 6 3-4 5 4z"/><path d="m9 13 8-6"/></svg>
+          Telegram
+        </a>
+        <span style="display: flex; gap: 8px"><strong style="color: #121417">UA</strong><a href="#" style="color: #5B616B">EN</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Masthead -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E3E4DF">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 0; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between">
+        <a href="#" style="display: flex; flex-direction: column; gap: 2px; text-decoration: none">
+          <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; font-size: 40px; letter-spacing: -0.5px; color: #121417; line-height: 1">[НАЗВА]</span>
+          <span style="font-size: 13px; color: #5B616B">Інвестиції та бізнес. Перевіряємо, перш ніж радити.</span>
+        </a>
+        <div style="display: flex; gap: 12px; align-items: center">
+          <button aria-label="Пошук" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D5D7D1; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121417">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </button>
+          <a href="#subscribe" style="height: 44px; padding: 0 20px; border-radius: 22px; background: {{accent}}; color: #FFFFFF; font-weight: 600; font-size: 15px; display: flex; align-items: center; text-decoration: none">Підписатися</a>
+        </div>
+      </div>
+      <nav aria-label="Розділи" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 15px; font-weight: 600">
+        <a href="#" style="padding: 12px 0; border-bottom: 3px solid {{accent}}">Інвестиції в Україну</a>
+        <a href="#" style="padding: 12px 0; border-bottom: 3px solid transparent">Інвестиції за кордоном</a>
+        <a href="#" style="padding: 12px 0; border-bottom: 3px solid transparent">Перевірки</a>
+        <a href="#" style="padding: 12px 0; border-bottom: 3px solid transparent">Головні новини</a>
+        <a href="#" style="padding: 12px 0; border-bottom: 3px solid transparent; color: #5B616B; font-weight: 500">Дайджест тижня</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 64px; display: flex; flex-direction: column; gap: 56px">
+
+    <!-- Audience filter -->
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+      <span style="font-size: 14px; color: #5B616B; margin-right: 4px">Показати для:</span>
+      <sc-for list="{{audiences}}" as="a" hint-placeholder-count="4">
+        <button onClick="{{a.pick}}" style="{{a.style}}">{{a.label}}</button>
+      </sc-for>
+    </div>
+
+    <!-- Hero -->
+    <section style="display: flex; flex-wrap: wrap; gap: 40px">
+      <article style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <div role="img" aria-label="Місце для фото матеріалу" style="aspect-ratio: 16 / 9; background: #E9EAE6; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6A7079; font-size: 14px">Фото</div>
+        <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: {{accent}}">
+          <span>Нерухомість</span><span style="color: #9A9FA6">·</span><span style="color: #5B616B">Розбір</span>
+        </div>
+        <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 44px; line-height: 1.12; letter-spacing: -0.5px"><a href="Article.dc.html">Склади на заході України: чому приватні інвестори повертаються в логістичну нерухомість</a></h1>
+        <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #3A3F46">Розбираємо, хто будує, на яких умовах заходять приватні інвестори і які ризики варто врахувати до підписання договору.</p>
+        <div style="font-size: 14px; color: #5B616B">[Автор] · 12 хв читання</div>
+      </article>
+
+      <aside aria-label="Останні новини" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column">
+        <h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5B616B">Останні новини</h2>
+        <sc-for list="{{latest}}" as="n" hint-placeholder-count="7">
+          <div style="display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #E3E4DF">
+            <span style="font-size: 13px; color: #5B616B; font-variant-numeric: tabular-nums; min-width: 40px">{{n.time}}</span>
+            <a href="#" style="font-size: 15px; line-height: 1.4; font-weight: 500">{{n.title}}</a>
+          </div>
+        </sc-for>
+        <a href="#" style="margin-top: 14px; font-size: 14px; font-weight: 600; color: {{accent}}">Усі новини →</a>
+      </aside>
+    </section>
+
+    <!-- Ukraine section -->
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: baseline; justify-content: space-between; border-top: 2px solid #121417; padding-top: 16px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px">Інвестиції в Україну</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px">
+          <a href="#">Нерухомість</a><a href="#">Промисловість</a><a href="#">Енергетика</a><a href="#">Технології</a><a href="#">Military tech</a><a href="#">Агро</a><a href="#">Відбудова</a><a href="#">ОВДП і фонди</a>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 32px">
+        <sc-for list="{{ukraine}}" as="c" hint-placeholder-count="3">
+          <article style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+            <div role="img" aria-label="Місце для фото" style="aspect-ratio: 3 / 2; background: #E9EAE6; border-radius: 6px"></div>
+            <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: {{accent}}">{{c.tag}}</div>
+            <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.25"><a href="Article.dc.html">{{c.title}}</a></h3>
+            <div style="font-size: 13px; color: #5B616B">{{c.meta}}</div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Checks band -->
+    <section style="background: #121417; color: #FFFFFF; border-radius: 10px; padding: 36px 32px; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between">
+        <div style="display: flex; flex-direction: column; gap: 6px; max-width: 640px">
+          <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px">Перевірки</h2>
+          <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #C9CCD1">Перевіряємо компанії та проєкти за відкритою методологією: реєстри, власники, ліцензії, обіцяна дохідність.</p>
+        </div>
+        <a href="#" style="height: 44px; padding: 0 20px; border-radius: 22px; background: #FFFFFF; color: #121417; font-weight: 600; font-size: 15px; display: flex; align-items: center; text-decoration: none">Надіслати проєкт на перевірку</a>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px">
+        <sc-for list="{{checks}}" as="k" hint-placeholder-count="3">
+          <a href="Check.dc.html" style="flex: 1 1 280px; min-width: 0; background: #1E2126; border: 1px solid #2E3238; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; color: #FFFFFF; text-decoration: none">
+            <span style="{{k.badge}}">{{k.verdict}}</span>
+            <span style="font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; line-height: 1.3; font-weight: 600">{{k.title}}</span>
+            <span style="font-size: 13px; color: #A9AEB5">{{k.meta}}</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Abroad + news -->
+    <section style="display: flex; flex-wrap: wrap; gap: 40px">
+      <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+        <div style="border-top: 2px solid #121417; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: baseline; justify-content: space-between">
+          <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px">Інвестиції за кордоном</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px"><a href="#">Нерухомість</a><a href="#">Фондові ринки</a><a href="#">Бізнес</a><a href="#">ВНП за інвестиції</a><a href="#">Податки</a></div>
+        </div>
+        <sc-for list="{{abroad}}" as="c" hint-placeholder-count="3">
+          <article style="display: flex; gap: 20px; padding-bottom: 20px; border-bottom: 1px solid #E3E4DF; flex-wrap: wrap">
+            <div role="img" aria-label="Місце для фото" style="flex: 0 0 200px; height: 130px; background: #E9EAE6; border-radius: 6px"></div>
+            <div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+              <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: {{accent}}">{{c.tag}}</div>
+              <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.25"><a href="Article.dc.html">{{c.title}}</a></h3>
+              <div style="font-size: 13px; color: #5B616B">{{c.meta}}</div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <aside aria-label="Головні новини" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+        <div style="border-top: 2px solid #121417; padding-top: 16px">
+          <h2 style="margin: 0 0 8px; font-family: 'Source Serif 4', Georgia, serif; font-size: 24px">Головні новини</h2>
+        </div>
+        <sc-for list="{{news}}" as="n" hint-placeholder-count="5">
+          <div style="padding: 14px 0; border-bottom: 1px solid #E3E4DF; display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 12px; font-weight: 600; color: #5B616B; text-transform: uppercase; letter-spacing: 0.6px">{{n.tag}}</span>
+            <a href="#" style="font-size: 16px; line-height: 1.4; font-weight: 600">{{n.title}}</a>
+          </div>
+        </sc-for>
+      </aside>
+    </section>
+
+    <!-- Subscribe -->
+    <section id="subscribe" style="background: #E7F0EB; border-radius: 10px; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center">
+      <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px">Дайджест тижня</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A3F46">Щоп'ятниці: головні новини, нові перевірки і що це означає для ваших грошей. Без реклами сумнівних проєктів.</p>
+      </div>
+      <form style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+        <label for="email" style="font-size: 14px; font-weight: 600">Електронна пошта</label>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <input id="email" type="email" placeholder="name@example.com" style="flex: 1 1 220px; min-width: 0; height: 48px; padding: 0 16px; border: 1px solid #A9B5AE; border-radius: 8px; font-size: 16px; font-family: inherit; background: #FFFFFF">
+          <button type="button" style="height: 48px; padding: 0 22px; border: 0; border-radius: 8px; background: {{accent}}; color: #FFFFFF; font-weight: 600; font-size: 15px; font-family: inherit; cursor: pointer">Підписатися</button>
+        </div>
+        <span style="font-size: 13px; color: #4A5058">Натискаючи «Підписатися», ви погоджуєтесь з <a href="#" style="text-decoration: underline">політикою конфіденційності</a>.</span>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: #121417; color: #C9CCD1">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between">
+      <div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; font-size: 28px; color: #FFFFFF">[НАЗВА]</span>
+        <span style="font-size: 14px; line-height: 1.5">Матеріали сайту не є інвестиційною порадою. Рішення про інвестиції ви приймаєте самостійно.</span>
+      </div>
+      <nav aria-label="Про видання" style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+        <a href="#" style="color: #E4E6E9">Про нас</a><a href="#" style="color: #E4E6E9">Редакція</a><a href="#" style="color: #E4E6E9">Редакційна політика</a><a href="#" style="color: #E4E6E9">Як ми перевіряємо проєкти</a><a href="#" style="color: #E4E6E9">Виправлення</a>
+      </nav>
+      <nav aria-label="Партнерам" style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+        <a href="#" style="color: #E4E6E9">Реклама і партнерство</a><a href="#" style="color: #E4E6E9">Контакти</a><a href="#" style="color: #E4E6E9">Політика конфіденційності</a><a href="#" style="color: #E4E6E9">Умови використання</a>
+      </nav>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0F6B4C","options":["#0F6B4C","#1F4E8C","#8A3B12","#121417"]},"$preview":{"width":1440,"height":2900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { aud: 'all' }; }
+  renderVals() {
+    const accent = this.props.accent ?? '#0F6B4C';
+    const auds = [
+      { id: 'all', label: 'Усім' },
+      { id: 'ua', label: 'В Україні' },
+      { id: 'diaspora', label: 'Діаспора' },
+      { id: 'foreign', label: 'Іноземцям' }
+    ];
+    const audiences = auds.map((a) => {
+      const on = this.state.aud === a.id;
+      return {
+        label: a.label,
+        pick: () => this.setState({ aud: a.id }),
+        style: 'height: 40px; padding: 0 16px; border-radius: 20px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; ' +
+          (on ? 'background: #121417; color: #FFFFFF; border: 1px solid #121417' : 'background: #FFFFFF; color: #121417; border: 1px solid #D5D7D1')
+      };
+    });
+    const badge = (bg, fg) => 'align-self: flex-start; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 4px; background: ' + bg + '; color: ' + fg;
+    return {
+      accent,
+      audiences,
+      latest: [
+        { time: '11:20', title: 'Що означає рішення НБУ щодо облікової ставки для депозитів і ОВДП' },
+        { time: '10:05', title: 'Фонди нерухомості: тепер інвестувати можна з будь-якої суми' },
+        { time: '09:40', title: 'Оборонні стартапи: як працюють гранти Brave1' },
+        { time: '08:15', title: 'Ринки зранку: що рухає світові індекси цього тижня' },
+        { time: 'Вчора', title: 'Як українцю за кордоном купити ОВДП: покроково' },
+        { time: 'Вчора', title: 'Сонячна генерація для бізнесу: окупність і ризики' }
+      ],
+      ukraine: [
+        { tag: 'Енергетика · Гайд', title: 'Власна генерація для підприємства: з чого почати і скільки це коштує', meta: '[Автор] · 9 хв' },
+        { tag: 'Military tech · Розбір', title: 'Як іноземні фонди заходять в українські оборонні стартапи', meta: '[Автор] · 14 хв' },
+        { tag: 'Агро · Кейс', title: 'Переробка замість експорту сировини: історія одного заводу', meta: '[Автор] · 8 хв' }
+      ],
+      checks: [
+        { verdict: 'Ознаки шахрайства', badge: badge('#FBE3DF', '#9E1F0B'), title: 'Онлайн-брокер «[Назва]»', meta: 'Перевірено 18 листопада · 7 критеріїв' },
+        { verdict: 'Є питання', badge: badge('#FBEFD8', '#7A4A00'), title: 'Будівельний фонд «[Назва]»', meta: 'Перевірено 14 листопада · 7 критеріїв' },
+        { verdict: 'Ризиків не знайдено', badge: badge('#DDEFE5', '#0B5A3E'), title: 'Агрокооператив «[Назва]»', meta: 'Перевірено 10 листопада · 7 критеріїв' }
+      ],
+      abroad: [
+        { tag: 'Нерухомість · Порівняння', title: 'Польща чи Іспанія: де вигідніше купувати житло під оренду', meta: '[Автор] · 11 хв' },
+        { tag: 'Фондові ринки · Гайд', title: 'Брокерський рахунок для українця: що обрати і як платити податки', meta: '[Автор] · 10 хв' },
+        { tag: 'Податки', title: 'Контрольовані іноземні компанії: що треба задекларувати', meta: '[Автор] · 7 хв' }
+      ],
+      news: [
+        { tag: 'Україна', title: 'Рада розглядає зміни до регулювання ринку капіталу' },
+        { tag: 'Світ', title: 'ФРС і ЄЦБ: чого чекають ринки від рішень грудня' },
+        { tag: 'Стартапи', title: 'Українська IT-компанія залучила раунд від європейського фонду' },
+        { tag: 'Україна', title: 'Будівельний ринок: як змінився попит на склади' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Сторінка перевірки проєкту</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFBF9}
+a{color:#0F6B4C;text-decoration:underline}
+a:hover{color:#0A4A34}
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; color: #121417; background: #FBFBF9; min-height: 100vh">
+
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E3E4DF">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; justify-content: space-between">
+      <a href="Main.dc.html" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; font-size: 28px; color: #121417; text-decoration: none">[НАЗВА]</a>
+      <nav aria-label="Розділи" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px; font-weight: 600">
+        <a href="#" style="color: #121417; text-decoration: none">Інвестиції в Україну</a>
+        <a href="#" style="color: #121417; text-decoration: none">За кордоном</a>
+        <a href="#" style="color: #0F6B4C; text-decoration: none">Перевірки</a>
+        <a href="#" style="color: #121417; text-decoration: none">Новини</a>
+      </nav>
+      <a href="#" style="height: 40px; padding: 0 18px; border-radius: 20px; background: #0F6B4C; color: #FFFFFF; font-weight: 600; font-size: 14px; display: flex; align-items: center; text-decoration: none">Підписатися</a>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 72px; display: flex; flex-direction: column; gap: 36px">
+    <nav aria-label="Навігація" style="font-size: 13px; color: #5B616B; display: flex; gap: 8px; flex-wrap: wrap">
+      <a href="Main.dc.html" style="color: #5B616B">Головна</a><span aria-hidden="true">/</span>
+      <a href="#" style="color: #5B616B">Перевірки</a><span aria-hidden="true">/</span>
+      <span>Перевірка проєкту</span>
+    </nav>
+
+    <!-- Verdict hero -->
+    <section style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
+      <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5B616B">Перевірка</span>
+        <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 44px; line-height: 1.12; letter-spacing: -0.5px">Онлайн-брокер «[Назва проєкту]»: що ми знайшли</h1>
+        <p style="margin: 0; font-size: 19px; line-height: 1.5; color: #3A3F46">Короткий підсумок перевірки: що обіцяє проєкт, що показали реєстри та як компанія відповіла на наш запит.</p>
+        <div style="font-size: 14px; color: #5B616B">[Автор перевірки] · Перевірено 18 листопада 2026 · Оновлено 20 листопада</div>
+      </div>
+
+      <div style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border: 2px solid {{v.border}}; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5B616B">Вердикт</span>
+        <div style="display: flex; gap: 12px; align-items: center; background: {{v.bg}}; color: {{v.fg}}; border-radius: 8px; padding: 14px 16px">
+          <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.01"/></svg>
+          <span style="font-size: 22px; font-weight: 700">{{v.label}}</span>
+        </div>
+        <dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; font-size: 14px">
+          <div><dt style="color: #5B616B">Юрособа</dt><dd style="margin: 2px 0 0; font-weight: 600">[Назва ТОВ]</dd></div>
+          <div><dt style="color: #5B616B">Код ЄДРПОУ</dt><dd style="margin: 2px 0 0; font-weight: 600">[код]</dd></div>
+          <div><dt style="color: #5B616B">Країна реєстрації</dt><dd style="margin: 2px 0 0; font-weight: 600">[країна]</dd></div>
+          <div><dt style="color: #5B616B">Сайт</dt><dd style="margin: 2px 0 0; font-weight: 600">[домен]</dd></div>
+        </dl>
+        <a href="#method" style="font-size: 14px; font-weight: 600">Як ми перевіряємо проєкти →</a>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: baseline; justify-content: space-between; border-top: 2px solid #121417; padding-top: 16px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px">Критерії перевірки</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #3A3F46">
+          <span style="display: flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: #1C8A5E"></span>Гаразд</span>
+          <span style="display: flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: #D9921C"></span>Питання</span>
+          <span style="display: flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: #B3260E"></span>Порушення</span>
+        </div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E4DF; border-radius: 10px; overflow: hidden">
+        <sc-for list="{{criteria}}" as="c" hint-placeholder-count="7">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 18px 22px; border-bottom: 1px solid #E3E4DF; align-items: flex-start">
+            <span style="{{c.badge}}">{{c.status}}</span>
+            <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 16px; font-weight: 600">{{c.name}}</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3A3F46">{{c.note}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-wrap: wrap; gap: 32px">
+      <!-- Right of reply -->
+      <div style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E4DF; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 20px; font-weight: 700">Відповідь компанії</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: #3A3F46">
+          <span>Запит надіслано: <strong>12 листопада</strong></span>
+          <span>Статус: <strong>не відповіли</strong></span>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #3A3F46">Якщо компанія відповість, ми опублікуємо її позицію тут і за потреби переглянемо вердикт. Компанія може оскаржити висновки через <a href="#">форму для компаній</a>.</p>
+      </div>
+
+      <!-- History -->
+      <div style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E4DF; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 20px; font-weight: 700">Історія вердикту</h2>
+        <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+          <li style="display: flex; gap: 12px"><span style="color: #5B616B; min-width: 92px">20 листопада</span><span>Додано дані з реєстру судових рішень</span></li>
+          <li style="display: flex; gap: 12px"><span style="color: #5B616B; min-width: 92px">18 листопада</span><span>Опубліковано, вердикт «{{v.label}}»</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Evidence -->
+    <section style="display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 26px">Документи та докази</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px">
+        <div role="img" aria-label="Місце для скриншота" style="flex: 1 1 240px; height: 160px; background: #E9EAE6; border-radius: 8px; display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box; font-size: 13px; color: #4A5058">Скриншот сайту проєкту, [дата]</div>
+        <div role="img" aria-label="Місце для витягу" style="flex: 1 1 240px; height: 160px; background: #E9EAE6; border-radius: 8px; display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box; font-size: 13px; color: #4A5058">Витяг з ЄДР, [дата]</div>
+        <div role="img" aria-label="Місце для документа" style="flex: 1 1 240px; height: 160px; background: #E9EAE6; border-radius: 8px; display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box; font-size: 13px; color: #4A5058">Рекламна розсилка проєкту, [дата]</div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="method" style="background: #121417; color: #FFFFFF; border-radius: 10px; padding: 32px; display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between">
+      <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 26px">Сумніваєтесь у проєкті?</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #C9CCD1">Надішліть нам назву і посилання. Ми перевіримо за тією ж методологією і повідомимо вас про результат.</p>
+      </div>
+      <a href="#" style="height: 48px; padding: 0 22px; border-radius: 24px; background: #FFFFFF; color: #121417; font-weight: 600; font-size: 15px; display: flex; align-items: center; text-decoration: none">Надіслати проєкт на перевірку</a>
+    </section>
+
+    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5B616B; max-width: 760px">Перевірка відображає дані, доступні на дату публікації, і не є інвестиційною порадою. Факти підтверджено документами; оцінки позначено як оцінки редакції.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"verdict":{"editor":"enum","options":["fraud","high","questions","clean"],"default":"fraud"},"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const verdicts = {
+      fraud: { label: 'Ознаки шахрайства', bg: '#FBE3DF', fg: '#9E1F0B', border: '#B3260E' },
+      high: { label: 'Високий ризик', bg: '#FBE9DC', fg: '#8A3300', border: '#C2550F' },
+      questions: { label: 'Є питання', bg: '#FBEFD8', fg: '#7A4A00', border: '#D9921C' },
+      clean: { label: 'Ризиків не знайдено', bg: '#DDEFE5', fg: '#0B5A3E', border: '#1C8A5E' }
+    };
+    const v = verdicts[this.props.verdict ?? 'fraud'] || verdicts.fraud;
+    const st = {
+      ok: { status: 'Гаразд', bg: '#DDEFE5', fg: '#0B5A3E' },
+      q: { status: 'Питання', bg: '#FBEFD8', fg: '#7A4A00' },
+      bad: { status: 'Порушення', bg: '#FBE3DF', fg: '#9E1F0B' }
+    };
+    const row = (s, name, note) => ({
+      name, note, status: st[s].status,
+      badge: 'flex: 0 0 112px; text-align: center; font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 4px; background: ' + st[s].bg + '; color: ' + st[s].fg
+    });
+    return {
+      v,
+      criteria: [
+        row('ok', 'Реєстрація компанії', 'Юрособа є в ЄДР, адреса і керівник збігаються з даними на сайті.'),
+        row('q', 'Кінцеві бенефіціари', 'Бенефіціар — компанія з іншої юрисдикції, реальних власників не розкрито.'),
+        row('bad', 'Ліцензія на діяльність', 'Проєкт пропонує послуги брокера, але ліцензії НКЦПФР немає.'),
+        row('bad', 'Попередження регулятора', 'Сайт проєкту є в списку попереджень НКЦПФР.'),
+        row('bad', 'Обіцяна дохідність', 'Сайт гарантує фіксований дохід, що не притаманне ринковим інструментам.'),
+        row('q', 'Фінансова звітність', 'Звітність за останній рік не опублікована.'),
+        row('ok', 'Судові справи', 'Справ проти компанії в реєстрі судових рішень не знайдено.')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Сторінка матеріалу</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFBF9}
+a{color:#0F6B4C;text-decoration:underline}
+a:hover{color:#0A4A34}
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; color: #121417; background: #FBFBF9; min-height: 100vh">
+
+  <!-- Compact header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E3E4DF">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; justify-content: space-between">
+      <a href="Main.dc.html" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; font-size: 28px; color: #121417; text-decoration: none">[НАЗВА]</a>
+      <nav aria-label="Розділи" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px; font-weight: 600">
+        <a href="#" style="color: #121417; text-decoration: none">Інвестиції в Україну</a>
+        <a href="#" style="color: #121417; text-decoration: none">За кордоном</a>
+        <a href="Check.dc.html" style="color: #121417; text-decoration: none">Перевірки</a>
+        <a href="#" style="color: #121417; text-decoration: none">Новини</a>
+      </nav>
+      <a href="#" style="height: 40px; padding: 0 18px; border-radius: 20px; background: {{accent}}; color: #FFFFFF; font-weight: 600; font-size: 14px; display: flex; align-items: center; text-decoration: none">Підписатися</a>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 72px; display: flex; flex-wrap: wrap; gap: 56px">
+
+    <article style="flex: 999 1 640px; min-width: 0; max-width: 760px; display: flex; flex-direction: column; gap: 22px">
+      <nav aria-label="Навігація" style="font-size: 13px; color: #5B616B; display: flex; gap: 8px; flex-wrap: wrap">
+        <a href="Main.dc.html" style="color: #5B616B">Головна</a><span aria-hidden="true">/</span>
+        <a href="#" style="color: #5B616B">Інвестиції в Україну</a><span aria-hidden="true">/</span>
+        <span>Нерухомість</span>
+      </nav>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; padding: 5px 10px; border-radius: 4px; background: #E7F0EB; color: #0B5A3E">Розбір</span>
+        <span style="font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 4px; border: 1px solid #D5D7D1; color: #3A3F46">В Україні</span>
+        <span style="font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 4px; border: 1px solid #D5D7D1; color: #3A3F46">Діаспора</span>
+      </div>
+
+      <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 46px; line-height: 1.12; letter-spacing: -0.5px">Склади на заході України: чому приватні інвестори повертаються в логістичну нерухомість</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.5; color: #3A3F46">Розбираємо, хто будує, на яких умовах заходять приватні інвестори і які ризики варто врахувати до підписання договору.</p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding: 16px 0; border-top: 1px solid #E3E4DF; border-bottom: 1px solid #E3E4DF">
+        <div style="display: flex; gap: 12px; align-items: center">
+          <div role="img" aria-label="Фото автора" style="width: 48px; height: 48px; border-radius: 24px; background: #DADCD6"></div>
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <a href="#" style="font-weight: 600; font-size: 15px; color: #121417; text-decoration: none">[Ім'я автора]</a>
+            <span style="font-size: 13px; color: #5B616B">Опубліковано 20 листопада 2026 · Оновлено 20 листопада · 12 хв</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px">
+          <button aria-label="Поділитися в Telegram" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D5D7D1; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121417">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l6 2 2 6 3-4 5 4z"/><path d="m9 13 8-6"/></svg>
+          </button>
+          <button aria-label="Поділитися в LinkedIn" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D5D7D1; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121417">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+          </button>
+          <button aria-label="Скопіювати посилання" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D5D7D1; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121417">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 8px">
+        <div role="img" aria-label="Місце для головного фото" style="aspect-ratio: 16 / 9; background: #E9EAE6; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6A7079; font-size: 14px">Фото</div>
+        <figcaption style="font-size: 13px; color: #5B616B">Підпис до фото. Фото: [джерело]</figcaption>
+      </figure>
+
+      <!-- TL;DR -->
+      <section aria-label="Коротко" style="background: #FFFFFF; border: 1px solid #E3E4DF; border-radius: 8px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: {{accent}}">Коротко</h2>
+        <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 1.5">
+          <li>Попит на склади на заході країни зріс через релокацію бізнесу та логістику до кордону з ЄС.</li>
+          <li>Приватний інвестор може зайти трьома способами: купити об'єкт, взяти частку в проєкті або вкласти через фонд.</li>
+          <li>Головні ризики — права на землю, підключення до мереж і якість орендаря.</li>
+        </ul>
+      </section>
+
+      <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 19px; line-height: 1.7; color: #1E2228; display: flex; flex-direction: column; gap: 18px">
+        <p style="margin: 0">Цей блок — приклад основного тексту. Тут редакція пояснює контекст: що змінилося на ринку, хто головні гравці і чому тема важлива саме зараз. Абзаци короткі, з посиланнями на першоджерела.</p>
+        <h2 style="margin: 12px 0 0; font-family: Inter, system-ui, sans-serif; font-size: 26px; line-height: 1.3; font-weight: 700">Три способи увійти в проєкт</h2>
+        <p style="margin: 0">Кожен формат дає різний рівень контролю й ліквідності. Порівняння нижче — шаблон таблиці всередині матеріалу.</p>
+      </div>
+
+      <div style="overflow-x: auto; border: 1px solid #E3E4DF; border-radius: 8px; background: #FFFFFF">
+        <table style="width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px">
+          <thead>
+            <tr style="background: #F3F4F1; text-align: left">
+              <th scope="col" style="padding: 12px 16px; font-weight: 600">Формат</th>
+              <th scope="col" style="padding: 12px 16px; font-weight: 600">Поріг входу</th>
+              <th scope="col" style="padding: 12px 16px; font-weight: 600">Ліквідність</th>
+              <th scope="col" style="padding: 12px 16px; font-weight: 600">Контроль</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top: 1px solid #E3E4DF"><td style="padding: 12px 16px; font-weight: 600">Купівля об'єкта</td><td style="padding: 12px 16px">Високий</td><td style="padding: 12px 16px">Низька</td><td style="padding: 12px 16px">Повний</td></tr>
+            <tr style="border-top: 1px solid #E3E4DF"><td style="padding: 12px 16px; font-weight: 600">Частка в проєкті</td><td style="padding: 12px 16px">Середній</td><td style="padding: 12px 16px">Низька</td><td style="padding: 12px 16px">Частковий</td></tr>
+            <tr style="border-top: 1px solid #E3E4DF"><td style="padding: 12px 16px; font-weight: 600">Фонд нерухомості (ІСІ)</td><td style="padding: 12px 16px">Будь-яка сума</td><td style="padding: 12px 16px">Залежить від фонду</td><td style="padding: 12px 16px">Немає</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- What it means -->
+      <aside style="background: #E7F0EB; border-radius: 8px; padding: 22px 24px; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 700; color: #0B5A3E">Що це означає для інвестора</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #1E2228">Блок-висновок у кінці кожного матеріалу: два-три речення про те, що читачеві робити з цією інформацією і на що звернути увагу.</p>
+      </aside>
+
+      <!-- Sources -->
+      <section style="display: flex; flex-direction: column; gap: 10px; padding-top: 8px">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 700">Джерела</h2>
+        <ol style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5">
+          <li><a href="#">[Назва документа або звіту]</a> — [організація], [дата]</li>
+          <li><a href="#">[Назва документа або звіту]</a> — [організація], [дата]</li>
+          <li>Інтерв'ю з [ім'я, посада], [дата]</li>
+        </ol>
+      </section>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 16px 0; border-top: 1px solid #E3E4DF">
+        <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5B616B; flex: 1 1 360px">Матеріал не є інвестиційною порадою. Перед рішенням проконсультуйтеся з фахівцем.</p>
+        <button type="button" style="height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #D5D7D1; background: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 600; color: #121417; cursor: pointer">Повідомити про помилку</button>
+      </div>
+    </article>
+
+    <!-- Sidebar -->
+    <aside style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+      <nav aria-label="Зміст" style="display: flex; flex-direction: column; gap: 10px; padding: 20px; background: #FFFFFF; border: 1px solid #E3E4DF; border-radius: 8px">
+        <h2 style="margin: 0; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5B616B">Зміст</h2>
+        <a href="#" style="font-size: 15px; color: #121417; text-decoration: none; font-weight: 600">Що змінилося на ринку</a>
+        <a href="#" style="font-size: 15px; color: #121417; text-decoration: none">Три способи увійти в проєкт</a>
+        <a href="#" style="font-size: 15px; color: #121417; text-decoration: none">Ризики і як їх перевірити</a>
+        <a href="#" style="font-size: 15px; color: #121417; text-decoration: none">Що це означає для інвестора</a>
+      </nav>
+
+      <div style="background: #121417; color: #FFFFFF; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 22px">Дайджест тижня</h2>
+        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #C9CCD1">Головне за тиждень щоп'ятниці на пошту.</p>
+        <label for="side-email" style="font-size: 13px; font-weight: 600">Електронна пошта</label>
+        <input id="side-email" type="email" placeholder="name@example.com" style="height: 44px; padding: 0 14px; border: 1px solid #3A3F46; border-radius: 8px; font-size: 15px; font-family: inherit; background: #1E2126; color: #FFFFFF">
+        <button type="button" style="height: 44px; border: 0; border-radius: 8px; background: #FFFFFF; color: #121417; font-weight: 600; font-size: 15px; font-family: inherit; cursor: pointer">Підписатися</button>
+      </div>
+
+      <section style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0 0 6px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5B616B">Читайте також</h2>
+        <a href="#" style="padding: 12px 0; border-bottom: 1px solid #E3E4DF; font-size: 15px; line-height: 1.4; font-weight: 600; color: #121417; text-decoration: none">Фонди нерухомості: як працює інвестування з будь-якої суми</a>
+        <a href="#" style="padding: 12px 0; border-bottom: 1px solid #E3E4DF; font-size: 15px; line-height: 1.4; font-weight: 600; color: #121417; text-decoration: none">Як перевірити забудовника перед інвестицією: чек-лист</a>
+        <a href="#" style="padding: 12px 0; border-bottom: 1px solid #E3E4DF; font-size: 15px; line-height: 1.4; font-weight: 600; color: #121417; text-decoration: none">Страхування воєнних ризиків для інвесторів: що доступно</a>
+      </section>
+    </aside>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0F6B4C","options":["#0F6B4C","#1F4E8C","#8A3B12","#121417"]},"$preview":{"width":1440,"height":2500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0F6B4C' };
+  }
+}
+</script>
+</body>
+</html>

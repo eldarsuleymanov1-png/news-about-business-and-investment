@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateAll } from '@/hooks/revalidate'
 import { chiefOnly } from '@/access/roles'
 
 /**
@@ -10,6 +11,7 @@ export const Homepage: GlobalConfig = {
   admin: { group: { uk: 'Контент', en: 'Content' } },
   access: { read: () => true, update: chiefOnly },
   versions: { max: 50 },
+  hooks: { afterChange: [revalidateAll] },
   fields: [
     {
       name: 'hero',
@@ -35,12 +37,12 @@ export const Homepage: GlobalConfig = {
       name: 'blocks',
       type: 'array',
       label: { uk: 'Блоки головної (порядок)', en: 'Homepage blocks (order)' },
-      defaultValue: [
-        { kind: 'latest-news' },
-        { kind: 'sections' },
-        { kind: 'latest-checks' },
-        { kind: 'subscribe' },
-      ],
+      admin: {
+        description: {
+          uk: 'Перетягуйте, щоб змінити порядок. Порожній список = порядок за замовчуванням, як у макеті.',
+          en: 'Drag to reorder. Empty = default order from the design.',
+        },
+      },
       fields: [
         {
           type: 'row',
@@ -52,16 +54,25 @@ export const Homepage: GlobalConfig = {
               label: { uk: 'Блок', en: 'Block' },
               options: [
                 {
-                  value: 'latest-news',
-                  label: { uk: 'Стрічка останніх новин', en: 'Latest news feed' },
+                  value: 'hero',
+                  label: { uk: 'Головний матеріал + стрічка новин', en: 'Lead story + news feed' },
                 },
                 {
-                  value: 'sections',
-                  label: { uk: 'Блоки чотирьох розділів', en: 'Four sections' },
+                  value: 'section-grid',
+                  label: { uk: 'Розділ: три картки', en: 'Section: three cards' },
                 },
-                { value: 'section', label: { uk: 'Один розділ', en: 'Single section' } },
-                { value: 'latest-checks', label: { uk: 'Останні перевірки', en: 'Latest checks' } },
-                { value: 'subscribe', label: { uk: 'Форма підписки', en: 'Subscribe form' } },
+                {
+                  value: 'section-list',
+                  label: { uk: 'Розділ: список + головні новини', en: 'Section: list + top news' },
+                },
+                {
+                  value: 'checks',
+                  label: { uk: 'Останні перевірки (темний блок)', en: 'Latest checks (dark band)' },
+                },
+                {
+                  value: 'subscribe',
+                  label: { uk: 'Підписка на дайджест', en: 'Digest subscription' },
+                },
               ],
             },
             {
@@ -69,7 +80,9 @@ export const Homepage: GlobalConfig = {
               type: 'relationship',
               relationTo: 'sections',
               label: { uk: 'Розділ', en: 'Section' },
-              admin: { condition: (_, s) => s?.kind === 'section' },
+              admin: {
+                condition: (_, s) => s?.kind === 'section-grid' || s?.kind === 'section-list',
+              },
             },
             { name: 'hidden', type: 'checkbox', label: { uk: 'Приховати', en: 'Hide' } },
           ],

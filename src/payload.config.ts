@@ -17,6 +17,7 @@ import { ErrorReports } from './collections/ErrorReports'
 import { Evidence } from './collections/Evidence'
 import { Materials } from './collections/Materials'
 import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
 import { Regions } from './collections/Regions'
 import { RequestFiles } from './collections/RequestFiles'
 import { Rubrics } from './collections/Rubrics'
@@ -35,39 +36,60 @@ const dirname = path.dirname(filename)
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 
 /**
- * Файлы в Cloudflare R2 (S3-совместимое хранилище), если заданы переменные S3_*.
- * Без них файлы хранятся локально — удобно для разработки.
+ * Файлы в Cloudflare R2 (S3-совместимое хранилище), если задан S3_BUCKET.
+ * Без него файлы хранятся локально — удобно для разработки.
+ *
+ * Плагин подключён всегда (enabled — по переменной) и с alwaysInsertFields: схема БД и миграции
+ * одинаковы локально и в продакшене. Компонент прямой загрузки добавлен в import map явно
+ * (admin.dependencies ниже) — иначе локально сгенерированная карта не подойдёт продакшену.
  */
-const plugins: Plugin[] = []
-if (process.env.S3_BUCKET) {
-  plugins.push(
-    s3Storage({
-      collections: {
-        media: true,
-        // Закрытые файлы отдаются только через Payload с проверкой прав
-        evidence: { signedDownloads: true },
-        'request-files': { signedDownloads: true },
+const s3Enabled = Boolean(process.env.S3_BUCKET)
+const s3PublicUrl = process.env.S3_PUBLIC_URL?.replace(/\/$/, '')
+
+const plugins: Plugin[] = [
+  s3Storage({
+    enabled: s3Enabled,
+    alwaysInsertFields: true,
+    collections: {
+      // Публичные фото — напрямую с домена R2 (CDN), минуя сервер приложения
+      media: s3PublicUrl
+        ? {
+            disablePayloadAccessControl: true,
+            generateFileURL: ({ filename, prefix }) =>
+              [s3PublicUrl, prefix, filename].filter(Boolean).join('/'),
+          }
+        : true,
+      // Закрытые файлы отдаются только через Payload с проверкой прав
+      evidence: { signedDownloads: true },
+      'request-files': { signedDownloads: true },
+    },
+    bucket: process.env.S3_BUCKET || 'not-configured',
+    // Vercel ограничивает тело запроса 4,5 МБ — файлы из админки грузятся напрямую в R2
+    clientUploads: true,
+    config: {
+      endpoint: process.env.S3_ENDPOINT,
+      region: process.env.S3_REGION || 'auto',
+      credentials: {
+        accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
       },
-      bucket: process.env.S3_BUCKET,
-      config: {
-        endpoint: process.env.S3_ENDPOINT,
-        region: process.env.S3_REGION || 'auto',
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
-        },
-        forcePathStyle: true,
-      },
-    }),
-  )
-}
+      forcePathStyle: true,
+    },
+  }),
+]
 
 export default buildConfig({
   serverURL,
   admin: {
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname) },
-    meta: { titleSuffix: ' — InvestNews CMS' },
+    meta: { titleSuffix: ' — EL Investments CMS' },
+    dependencies: {
+      s3ClientUploadHandler: {
+        type: 'component',
+        path: '@payloadcms/storage-s3/client#S3ClientUploadHandler',
+      },
+    },
   },
   i18n: {
     supportedLanguages: { uk, en },
@@ -85,6 +107,7 @@ export default buildConfig({
     Materials,
     withAuditLog(Authors),
     Media,
+    withAuditLog(Pages),
     Sections,
     withAuditLog(Rubrics),
     Tags,
@@ -105,7 +128,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: { connectionString: process.env.DATABASE_URL || '' },
     // В разработке схема синхронизируется автоматически, в продакшене — только миграциями
-    push: process.env.NODE_ENV !== 'production',
+    push: process.env.NODE_ENV !== 'production' && process.env.PAYLOAD_DB_PUSH !== 'false',
     migrationDir: path.resolve(dirname, 'migrations'),
     // В продакшене миграции применяются при старте приложения
     prodMigrations: migrations,

@@ -4,6 +4,7 @@ import { slugField } from '@/fields/slug'
 import { materialEditor } from '@/fields/richText'
 import { withAuditLog } from '@/hooks/auditLog'
 import { enforceEditorialRules } from './hooks'
+import { revalidateMaterial } from '@/hooks/revalidate'
 import {
   PUBLIC_STATUSES,
   audienceOptions,
@@ -339,6 +340,7 @@ export const Materials: CollectionConfig = withAuditLog({
   },
   hooks: {
     beforeChange: [enforceEditorialRules],
+    afterChange: [revalidateMaterial],
   },
   fields: [
     // ---------------- Сайдбар ----------------

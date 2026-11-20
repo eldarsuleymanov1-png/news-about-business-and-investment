@@ -25,6 +25,8 @@ const nextConfig: NextConfig = {
     ]
   },
   images: {
+    // Публичный домен бакета R2 (например, https://media.elinvestments.com) — для next/image
+    remotePatterns: process.env.S3_PUBLIC_URL ? [new URL(`${process.env.S3_PUBLIC_URL.replace(/\/$/, '')}/**`)] : [],
     localPatterns: [
       {
         pathname: '/api/media/file/**',

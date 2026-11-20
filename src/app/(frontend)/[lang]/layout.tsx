@@ -10,18 +10,26 @@ import '../styles.css'
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-sans', display: 'swap' })
 const serif = Source_Serif_4({
   subsets: ['latin', 'cyrillic'],
-  weight: ['600', '700'],
+  weight: ['400', '600', '700'],
   variable: '--font-serif',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
-  title: { default: '[НАЗВА]', template: '%s — [НАЗВА]' },
+  title: { default: 'EL Investments', template: '%s — EL Investments' },
+  applicationName: 'EL Investments',
 }
 
-// Страницы не пререндерятся при сборке (сборке не нужна база): рендер по первому запросу,
-// дальше кэш ISR (revalidate на страницах) + CDN.
+/**
+ * Пустой список: при сборке ничего не пререндерим (базе не нужно быть доступной),
+ * страницы рендерятся при первом запросе и дальше берутся из кэша ISR (revalidate на страницах).
+ * Без generateStaticParams Next считает сегмент [lang] полностью динамическим.
+ */
+export function generateStaticParams() {
+  return []
+}
+
 export default async function LangLayout({
   children,
   params,

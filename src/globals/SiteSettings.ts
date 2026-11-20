@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateAll } from '@/hooks/revalidate'
 import { adminOnly } from '@/access/roles'
 
 /** Общие настройки сайта и выходные данные издания (ТЗ, 9). */
@@ -7,12 +8,13 @@ export const SiteSettings: GlobalConfig = {
   label: { uk: 'Налаштування сайту', en: 'Site settings' },
   admin: { group: { uk: 'Налаштування', en: 'Settings' } },
   access: { read: () => true, update: adminOnly },
+  hooks: { afterChange: [revalidateAll] },
   fields: [
     {
       name: 'siteName',
       type: 'text',
       required: true,
-      defaultValue: 'InvestNews',
+      defaultValue: 'EL Investments',
       localized: true,
       label: { uk: 'Назва видання', en: 'Publication name' },
     },
@@ -20,6 +22,7 @@ export const SiteSettings: GlobalConfig = {
       name: 'tagline',
       type: 'text',
       localized: true,
+      defaultValue: 'Інвестиції та бізнес. Перевіряємо, перш ніж радити.',
       label: { uk: 'Підзаголовок', en: 'Tagline' },
     },
     {

@@ -17,3 +17,14 @@ export function materialHref(m: Pick<Material, 'slug' | 'section' | 'rubric'>, l
 export const sectionHref = (slug: string, locale: Locale) => `/${prefixFromLocale(locale)}/${slug}`
 export const rubricHref = (section: string, rubric: string, locale: Locale) =>
   `/${prefixFromLocale(locale)}/${section}/${rubric}`
+
+/**
+ * Адрес файла из медиатеки для next/image. Payload отдаёт абсолютный URL (serverURL),
+ * а локальные файлы next/image принимает только относительными — отрезаем свой домен.
+ * Файлы из R2 (внешний домен) остаются как есть: их домен разрешается в next.config.ts.
+ */
+export function mediaSrc(url: string | null | undefined): string | null {
+  if (!url) return null
+  const base = siteUrl()
+  return url.startsWith(base) ? url.slice(base.length) || '/' : url
+}

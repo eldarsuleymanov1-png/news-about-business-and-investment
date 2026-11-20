@@ -29,6 +29,12 @@ export const Sections: CollectionConfig = {
     },
     slugField({ unique: true }),
     {
+      name: 'navTitle',
+      type: 'text',
+      localized: true,
+      label: { uk: 'Коротка назва (компактна шапка)', en: 'Short title (compact header)' },
+    },
+    {
       name: 'description',
       type: 'textarea',
       localized: true,

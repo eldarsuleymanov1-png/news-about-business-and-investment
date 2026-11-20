@@ -1,31 +1,40 @@
 import type { ReactNode } from 'react'
 import type { Locale } from '@/i18n/config'
-import { getDictionary } from '@/lib/dictionary'
-import { getSections } from '@/lib/payload'
 import { SiteFooter } from './SiteFooter'
 import { SiteHeader } from './SiteHeader'
 
 type Props = {
   locale: Locale
   children: ReactNode
+  header?: 'full' | 'compact'
   alternates?: Partial<Record<Locale, string>>
   activeSection?: string
+  mainClassName?: string
 }
 
-export async function PageShell({ locale, children, alternates, activeSection }: Props) {
-  const dict = getDictionary(locale)
-  const sections = await getSections(locale)
+export function PageShell({
+  locale,
+  children,
+  header = 'compact',
+  alternates,
+  activeSection,
+  mainClassName,
+}: Props) {
   return (
     <>
+      <a href="#main" className="skip-link">
+        {locale === 'uk' ? 'Перейти до змісту' : 'Skip to content'}
+      </a>
       <SiteHeader
         locale={locale}
-        dict={dict}
-        sections={sections}
+        variant={header}
         alternates={alternates}
         activeSection={activeSection}
       />
-      <main className="container page">{children}</main>
-      <SiteFooter dict={dict} />
+      <main id="main" className={`container page ${mainClassName ?? ''}`}>
+        {children}
+      </main>
+      <SiteFooter locale={locale} />
     </>
   )
 }

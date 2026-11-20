@@ -1,5 +1,5 @@
 import type { Payload } from 'payload'
-import { structure } from './structure'
+import { servicePages, structure } from './structure'
 
 /**
  * Идемпотентно создаёт разделы, рубрики и Украину в справочнике стран.
@@ -19,15 +19,28 @@ export async function seedStructure(payload: Payload) {
       section = await payload.create({
         collection: 'sections',
         locale: 'uk',
-        data: { title: s.title.uk, slug: s.slug, order: i },
+        data: { title: s.title.uk, navTitle: s.nav.uk, slug: s.slug, order: i },
       })
       await payload.update({
         collection: 'sections',
         id: section.id,
         locale: 'en',
-        data: { title: s.title.en },
+        data: { title: s.title.en, navTitle: s.nav.en },
       })
       payload.logger.info(`section ${s.slug}`)
+    } else if (!section.navTitle) {
+      await payload.update({
+        collection: 'sections',
+        id: section.id,
+        locale: 'uk',
+        data: { navTitle: s.nav.uk },
+      })
+      await payload.update({
+        collection: 'sections',
+        id: section.id,
+        locale: 'en',
+        data: { navTitle: s.nav.en },
+      })
     }
     for (const [j, r] of s.rubrics.entries()) {
       const exists = await payload.find({
@@ -56,6 +69,27 @@ export async function seedStructure(payload: Payload) {
       })
       payload.logger.info(`  rubric ${s.slug}/${r.slug}`)
     }
+  }
+
+  for (const p of servicePages) {
+    const exists = await payload.find({
+      collection: 'pages',
+      where: { slug: { equals: p.slug } },
+      limit: 1,
+    })
+    if (exists.docs.length) continue
+    const doc = await payload.create({
+      collection: 'pages',
+      locale: 'uk',
+      data: {
+        title: p.uk,
+        slug: p.slug,
+        footerGroup: p.group,
+        footerOrder: p.order,
+        published: false,
+      },
+    })
+    await payload.update({ collection: 'pages', id: doc.id, locale: 'en', data: { title: p.en } })
   }
 
   const ua = await payload.find({

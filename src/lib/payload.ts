@@ -3,6 +3,7 @@ import { getPayload, type Where } from 'payload'
 import { cache } from 'react'
 import type { Locale } from '@/i18n/config'
 import type { Material, Rubric, Section } from '@/payload-types'
+import { stemWord } from './stem'
 
 export const getPayloadClient = cache(async () => getPayload({ config }))
 
@@ -145,7 +146,9 @@ export async function searchMaterials(
 ) {
   const and: Where[] = []
   const words = query.trim().split(/\s+/).filter(Boolean).slice(0, 6)
-  for (const w of words) and.push({ or: [{ title: { like: w } }, { lead: { like: w } }] })
+  for (const w of words.map(stemWord)) {
+    and.push({ or: [{ title: { like: w } }, { lead: { like: w } }, { tldr: { like: w } }] })
+  }
   if (filters.section) and.push({ section: { equals: filters.section } })
   if (filters.from) and.push({ publishedAt: { greater_than_equal: filters.from } })
   if (filters.to) and.push({ publishedAt: { less_than_equal: `${filters.to}T23:59:59.999Z` } })

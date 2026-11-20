@@ -1,7 +1,7 @@
 'use client'
 
 import Script from 'next/script'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import { logConsent } from '@/actions/consent'
 import {
   CONSENT_COOKIE,
@@ -26,13 +26,18 @@ export type ConsentStrings = {
 
 export const OPEN_CONSENT_EVENT = 'el:open-consent'
 
-const readCookie = () =>
-  parseConsent(
-    document.cookie
-      .split('; ')
-      .find((c) => c.startsWith(`${CONSENT_COOKIE}=`))
-      ?.slice(CONSENT_COOKIE.length + 1),
-  )
+const CONSENT_CHANGED_EVENT = 'el:consent-changed'
+
+/** Значение cookie как внешнее хранилище: сервер — null, клиент — текущая строка cookie. */
+const rawCookie = () =>
+  document.cookie
+    .split('; ')
+    .find((c) => c.startsWith(`${CONSENT_COOKIE}=`))
+    ?.slice(CONSENT_COOKIE.length + 1) ?? ''
+const subscribeCookie = (cb: () => void) => {
+  window.addEventListener(CONSENT_CHANGED_EVENT, cb)
+  return () => window.removeEventListener(CONSENT_CHANGED_EVENT, cb)
+}
 
 const writeCookie = (c: ConsentState) => {
   const secure = location.protocol === 'https:' ? '; Secure' : ''
@@ -68,24 +73,22 @@ export function CookieConsent({
   privacyHref: string
 }) {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-  const [consent, setConsent] = useState<ConsentState | null>(null)
-  const [visible, setVisible] = useState(false)
+  // null на сервере и до гидратации — баннер не рендерится в HTML (не ломает ISR)
+  const raw = useSyncExternalStore(subscribeCookie, rawCookie, () => null)
+  const consent = raw === null ? null : parseConsent(raw)
+  const [reopened, setReopened] = useState(false)
   const [custom, setCustom] = useState(false)
-  const [analyticsChecked, setAnalyticsChecked] = useState(false)
+  const [analyticsChecked, setAnalyticsChecked] = useState<boolean | null>(null)
+  const visible = raw !== null && (!consent || reopened)
 
   useEffect(() => {
-    if (!gaId) return
-    const c = readCookie()
-    setConsent(c)
-    setVisible(!c)
-    setAnalyticsChecked(c?.analytics ?? false)
     const reopen = () => {
       setCustom(true)
-      setVisible(true)
+      setReopened(true)
     }
     window.addEventListener(OPEN_CONSENT_EVENT, reopen)
     return () => window.removeEventListener(OPEN_CONSENT_EVENT, reopen)
-  }, [gaId])
+  }, [])
 
   const decide = useCallback(
     (analytics: boolean, action: 'accept-all' | 'necessary-only' | 'custom') => {
@@ -100,8 +103,8 @@ export function CookieConsent({
         clearAnalyticsCookies()
         if (consent?.analytics) window.location.reload() // выгрузить уже загруженный gtag
       }
-      setConsent(c)
-      setVisible(false)
+      window.dispatchEvent(new Event(CONSENT_CHANGED_EVENT))
+      setReopened(false)
       setCustom(false)
       void logConsent({ id: c.id, analytics, action, locale })
     },
@@ -150,7 +153,7 @@ gtag('config','${gaId}',{anonymize_ip:true});`}
                 <label className="checkbox">
                   <input
                     type="checkbox"
-                    checked={analyticsChecked}
+                    checked={analyticsChecked ?? consent?.analytics ?? false}
                     onChange={(e) => setAnalyticsChecked(e.target.checked)}
                   />
                   <span>
@@ -164,7 +167,7 @@ gtag('config','${gaId}',{anonymize_ip:true});`}
                 <button
                   type="button"
                   className="btn btn--accent"
-                  onClick={() => decide(analyticsChecked, 'custom')}
+                  onClick={() => decide(analyticsChecked ?? consent?.analytics ?? false, 'custom')}
                 >
                   {t.save}
                 </button>

@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
 import { locales, localeFromPrefix } from '@/i18n/config'
 import { siteUrl } from '@/lib/urls'
+import { getDictionary } from '@/lib/dictionary'
+import { CookieConsent } from '@/components/CookieConsent'
 import '../styles.css'
 
 // Шрифты скачиваются при сборке и раздаются с нашего домена (без запросов к Google у читателя)
@@ -46,6 +48,11 @@ export default async function LangLayout({
       <body>
         <link rel="alternate" type="application/rss+xml" title="RSS" href={`/${lang}/rss.xml`} />
         {children}
+        <CookieConsent
+          locale={locale}
+          privacyHref={`/${lang}/privacy`}
+          strings={(({ settings: _s, ...rest }) => rest)(getDictionary(locale).cookies)}
+        />
       </body>
     </html>
   )

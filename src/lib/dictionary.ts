@@ -116,6 +116,21 @@ const dict = {
     footerPartners: 'Партнерам',
     footerDisclaimer:
       'Матеріали сайту не є інвестиційною порадою. Рішення про інвестиції ви приймаєте самостійно.',
+    cookies: {
+      title: 'Ми використовуємо cookies',
+      text: 'Необхідні cookies потрібні для роботи сайту. Аналітичні (Google Analytics) допомагають зрозуміти, що читають, — вмикаємо їх лише з вашої згоди. Детальніше — у',
+      privacy: 'політиці конфіденційності',
+      acceptAll: 'Прийняти всі',
+      necessaryOnly: 'Лише необхідні',
+      customize: 'Налаштувати',
+      save: 'Зберегти вибір',
+      necessary: 'Необхідні',
+      necessaryDesc: 'запамʼятовують ваш вибір щодо cookies. Завжди увімкнені.',
+      analytics: 'Аналітика',
+      analyticsDesc:
+        'Google Analytics 4: відвідування, джерела, глибина читання. IP анонімізується.',
+      settings: 'Налаштування cookies',
+    },
     errorReport: {
       button: 'Повідомити про помилку',
       hint: 'Або виділіть текст і натисніть Ctrl+Enter.',
@@ -268,6 +283,20 @@ const dict = {
     footerPartners: 'Partners',
     footerDisclaimer:
       'Content on this site is not investment advice. You make investment decisions yourself.',
+    cookies: {
+      title: 'We use cookies',
+      text: 'Necessary cookies keep the site working. Analytics cookies (Google Analytics) help us understand what people read — we enable them only with your consent. Learn more in the',
+      privacy: 'privacy policy',
+      acceptAll: 'Accept all',
+      necessaryOnly: 'Necessary only',
+      customize: 'Customize',
+      save: 'Save choice',
+      necessary: 'Necessary',
+      necessaryDesc: 'remember your cookie choice. Always on.',
+      analytics: 'Analytics',
+      analyticsDesc: 'Google Analytics 4: visits, sources, reading depth. IP is anonymised.',
+      settings: 'Cookie settings',
+    },
     errorReport: {
       button: 'Report an error',
       hint: 'Or select text and press Ctrl+Enter.',

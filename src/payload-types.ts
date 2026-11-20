@@ -82,6 +82,7 @@ export interface Config {
     'error-reports': ErrorReport;
     users: User;
     'audit-log': AuditLog;
+    'consent-log': ConsentLog;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -108,6 +109,7 @@ export interface Config {
     'error-reports': ErrorReportsSelect<false> | ErrorReportsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'audit-log': AuditLogSelect<false> | AuditLogSelect<true>;
+    'consent-log': ConsentLogSelect<false> | ConsentLogSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -684,6 +686,20 @@ export interface AuditLog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "consent-log".
+ */
+export interface ConsentLog {
+  id: number;
+  consentId: string;
+  analytics?: boolean | null;
+  policyVersion: string;
+  locale?: string | null;
+  action: 'accept-all' | 'necessary-only' | 'custom';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -765,6 +781,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'audit-log';
         value: number | AuditLog;
+      } | null)
+    | ({
+        relationTo: 'consent-log';
+        value: number | ConsentLog;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1237,6 +1257,19 @@ export interface AuditLogSelect<T extends boolean = true> {
   summary?: T;
   statusFrom?: T;
   statusTo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "consent-log_select".
+ */
+export interface ConsentLogSelect<T extends boolean = true> {
+  consentId?: T;
+  analytics?: T;
+  policyVersion?: T;
+  locale?: T;
+  action?: T;
   updatedAt?: T;
   createdAt?: T;
 }

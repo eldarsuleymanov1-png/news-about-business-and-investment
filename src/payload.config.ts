@@ -12,6 +12,7 @@ import { AuditLog } from './collections/AuditLog'
 import { Authors } from './collections/Authors'
 import { CheckRequests } from './collections/CheckRequests'
 import { Companies } from './collections/Companies'
+import { ConsentLog } from './collections/ConsentLog'
 import { Corrections } from './collections/Corrections'
 import { ErrorReports } from './collections/ErrorReports'
 import { Evidence } from './collections/Evidence'
@@ -117,6 +118,7 @@ export default buildConfig({
     ErrorReports,
     withAuditLog(Users),
     AuditLog,
+    ConsentLog,
   ],
   globals: [Homepage, SiteSettings],
   editor: lexicalEditor(),

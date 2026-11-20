@@ -1,8 +1,9 @@
 'use client'
 
-import { useActionState, useId } from 'react'
+import { useActionState, useEffect, useId } from 'react'
 import { subscribe, type SubscribeState } from '@/actions/subscribe'
 import type { Locale } from '@/i18n/config'
+import { track } from '@/lib/analytics'
 
 type Strings = {
   email: string
@@ -30,6 +31,10 @@ export function SubscribeForm({ locale, strings, privacyHref, variant, sections 
     status: 'idle',
   })
   const id = useId()
+
+  useEffect(() => {
+    if (state.status === 'ok') track('sign_up', { method: 'newsletter', form: variant })
+  }, [state.status, variant])
 
   if (state.status === 'ok') {
     return (

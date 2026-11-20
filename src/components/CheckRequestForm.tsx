@@ -7,6 +7,7 @@ import {
   type CheckRequestErrors,
 } from '@/actions/checkRequest'
 import { Turnstile } from './Turnstile'
+import { track } from '@/lib/analytics'
 
 export type CheckRequestStrings = {
   projectName: string
@@ -101,6 +102,7 @@ export function CheckRequestForm({
         setCaptchaReset((n) => n + 1)
         return
       }
+      track('generate_lead', { form: 'check_request', files: files.length })
       if (result.status === 'ok') {
         setDone(t.success)
         return

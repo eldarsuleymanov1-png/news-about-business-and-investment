@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { prefixFromLocale, type Locale } from '@/i18n/config'
 import { getDictionary } from '@/lib/dictionary'
 import { getFooterPages, getSiteSettings } from '@/lib/payload'
+import { CookieSettingsButton } from './CookieConsent'
 
 export async function SiteFooter({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale)
@@ -38,6 +39,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
         <nav aria-label={dict.footerPartners} className="footer__col">
           {partners.map((x) => link(x.slug!, x.title))}
           {settings.social?.telegram && <a href={settings.social.telegram}>Telegram</a>}
+          <CookieSettingsButton label={dict.cookies.settings} />
         </nav>
       </div>
     </footer>

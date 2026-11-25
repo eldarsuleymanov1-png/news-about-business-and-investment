@@ -41,8 +41,10 @@ export async function GET() {
 ${urls.join('\n')}
 </urlset>
 `
-  return new Response(xml, { headers: {
+  return new Response(xml, {
+    headers: {
       'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=3600',
-    } })
+    },
+  })
 }

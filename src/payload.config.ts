@@ -88,6 +88,11 @@ export default buildConfig({
         type: 'component',
         path: '@payloadcms/storage-s3/client#S3ClientUploadHandler',
       },
+      // Кнопка Telegram подключается только при TELEGRAM_BOT_TOKEN — в карте компонентов она есть всегда
+      telegramButton: {
+        type: 'component',
+        path: '@/components/admin/TelegramButton#TelegramButton',
+      },
     },
   },
   i18n: {

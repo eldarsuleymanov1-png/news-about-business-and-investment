@@ -306,12 +306,11 @@ export const Materials: CollectionConfig = withAuditLog({
     defaultColumns: ['title', 'format', 'section', 'status', 'publishedAt'],
     listSearchableFields: ['title', 'lead'],
     group: L('Контент', 'Content'),
-    components: {
-      edit: {
-        // Кнопка «Надіслати в Telegram» рядом с «Зберегти»
-        beforeDocumentControls: ['@/components/admin/TelegramButton#TelegramButton'],
-      },
-    },
+    // Кнопка «Надіслати в Telegram» рядом с «Зберегти» — только когда бот настроен (TELEGRAM_BOT_TOKEN).
+    // Решение владельца 25.11.2026: пока без Telegram.
+    components: process.env.TELEGRAM_BOT_TOKEN
+      ? { edit: { beforeDocumentControls: ['@/components/admin/TelegramButton#TelegramButton'] } }
+      : undefined,
   },
   defaultSort: '-publishedAt',
   versions: { maxPerDoc: 100 },

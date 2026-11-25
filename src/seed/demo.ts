@@ -137,7 +137,6 @@ await payload.updateGlobal({
   locale: 'uk',
   data: {
     siteName: 'EL Investments',
-    social: { telegram: 'https://t.me/' },
     publisher: { email: 'editor@example.com' },
   },
 })

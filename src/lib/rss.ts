@@ -20,7 +20,7 @@ export async function rssResponse(lang: string, sectionSlug?: string): Promise<R
   ])
   const base = siteUrl()
   const selfPath = `/${prefixFromLocale(locale)}${section ? `/${section.slug}` : ''}/rss.xml`
-  const siteName = settings.siteName || 'EL Investments'
+  const siteName = settings.siteName || 'Invest Venture'
   const title = section ? `${section.title} — ${siteName}` : siteName
 
   const items = docs
@@ -40,7 +40,7 @@ export async function rssResponse(lang: string, sectionSlug?: string): Promise<R
       return `    <item>
       <title>${xmlEscape(label + m.title)}</title>
       <link>${base}${href}</link>
-      <guid isPermaLink="false">el-investments-material-${m.id}</guid>
+      <guid isPermaLink="false">iv-material-${m.id}</guid>
       <pubDate>${new Date(m.publishedAt ?? m.createdAt).toUTCString()}</pubDate>
       ${m.lead ? `<description>${xmlEscape(m.lead)}</description>` : ''}
       ${category ? `<category>${xmlEscape(category)}</category>` : ''}

@@ -1345,6 +1345,10 @@ export interface Homepage {
 export interface SiteSetting {
   id: number;
   siteName: string;
+  /**
+   * 1–3 characters
+   */
+  shortName: string;
   tagline?: string | null;
   disclaimerShort: string;
   publisher?: {
@@ -1388,6 +1392,7 @@ export interface HomepageSelect<T extends boolean = true> {
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
+  shortName?: T;
   tagline?: T;
   disclaimerShort?: T;
   publisher?:

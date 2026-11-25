@@ -19,8 +19,8 @@ const serif = Source_Serif_4({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
-  title: { default: 'EL Investments', template: '%s — EL Investments' },
-  applicationName: 'EL Investments',
+  title: { default: 'Invest Venture', template: '%s — IV' },
+  applicationName: 'Invest Venture',
 }
 
 /**

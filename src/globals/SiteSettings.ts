@@ -14,9 +14,19 @@ export const SiteSettings: GlobalConfig = {
       name: 'siteName',
       type: 'text',
       required: true,
-      defaultValue: 'EL Investments',
+      defaultValue: 'Invest Venture',
       localized: true,
       label: { uk: 'Назва видання', en: 'Publication name' },
+    },
+    {
+      name: 'shortName',
+      type: 'text',
+      required: true,
+      defaultValue: 'IV',
+      label: { uk: 'Короткий знак (логотип, іконка)', en: 'Short mark (logo, icon)' },
+      admin: { description: { uk: '1–3 символи', en: '1–3 characters' } },
+      validate: (v: unknown) =>
+        (typeof v === 'string' && v.length >= 1 && v.length <= 3) || '1–3 символи',
     },
     {
       name: 'tagline',

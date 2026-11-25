@@ -26,7 +26,7 @@ export async function GET() {
     <loc>${xmlEscape(base + m.urls[l.code]!)}</loc>
     <news:news>
       <news:publication>
-        <news:name>${xmlEscape(settings.siteName || 'EL Investments')}</news:name>
+        <news:name>${xmlEscape(settings.siteName || 'Invest Venture')}</news:name>
         <news:language>${l.hreflang}</news:language>
       </news:publication>
       <news:publication_date>${m.publishedAt}</news:publication_date>

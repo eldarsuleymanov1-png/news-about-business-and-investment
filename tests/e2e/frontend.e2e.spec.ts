@@ -11,7 +11,7 @@ test.describe('Публічна частина', () => {
     await page.goto(`${BASE}/`)
     await expect(page).toHaveURL(/\/ua$/)
     await expect(page.locator('html')).toHaveAttribute('lang', 'uk')
-    await expect(page.locator('.logo__name')).toHaveText('EL Investments')
+    await expect(page.locator('.logo__name')).toHaveText('Invest Venture')
   })
 
   test('англійська версія має lang=en', async ({ page }) => {

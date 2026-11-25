@@ -106,7 +106,7 @@ async function placeholderImage(
   return payload.create({
     collection: 'media',
     locale: 'uk',
-    data: { alt, credit: 'EL Investments (ілюстрація)', license: 'own' },
+    data: { alt, credit: 'Invest Venture (ілюстрація)', license: 'own' },
     file: { data, mimetype: 'image/png', name: `${name}.png`, size: data.length },
   })
 }
@@ -136,7 +136,8 @@ await payload.updateGlobal({
   slug: 'site-settings',
   locale: 'uk',
   data: {
-    siteName: 'EL Investments',
+    siteName: 'Invest Venture',
+    shortName: 'IV',
     publisher: { email: 'editor@example.com' },
   },
 })

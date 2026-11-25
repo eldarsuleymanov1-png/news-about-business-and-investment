@@ -46,13 +46,17 @@ export async function SiteHeader({ locale, variant, alternates = {}, activeSecti
   const dict = getDictionary(locale)
   const [sections, settings] = await Promise.all([getSections(locale), getSiteSettings(locale)])
   const home = `/${prefixFromLocale(locale)}`
-  const siteName = settings.siteName || 'EL Investments'
+  const siteName = settings.siteName || 'Invest Venture'
+  const mark = settings.shortName || 'IV'
 
   if (variant === 'compact') {
     return (
       <header className="masthead masthead--compact">
         <div className="container masthead--compact__inner">
           <Link href={home} className="logo logo--compact">
+            <span className="logo__mark" aria-hidden="true">
+              {mark}
+            </span>
             {siteName}
           </Link>
           <nav aria-label={dict.sections} className="compact-nav">
@@ -108,7 +112,12 @@ export async function SiteHeader({ locale, variant, alternates = {}, activeSecti
         <div className="container masthead__inner">
           <div className="masthead__row">
             <Link href={home} className="logo">
-              <span className="logo__name">{siteName}</span>
+              <span className="logo__row">
+                <span className="logo__mark logo__mark--lg" aria-hidden="true">
+                  {mark}
+                </span>
+                <span className="logo__name">{siteName}</span>
+              </span>
               {settings.tagline && <span className="logo__tagline">{settings.tagline}</span>}
             </Link>
             <div className="masthead__actions">

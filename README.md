@@ -1,4 +1,4 @@
-# EL Investments — онлайн-медіа про інвестиції та бізнес
+# IV (Invest Venture) — онлайн-медіа про інвестиції та бізнес
 
 Next.js (App Router) + Payload CMS 3 + PostgreSQL. Адмінка та сайт — один застосунок.
 Повне ТЗ — [`docs/TZ.md`](docs/TZ.md), контекст для розробки — [`CLAUDE.md`](CLAUDE.md), макети — `design/`.
@@ -65,7 +65,7 @@ pnpm dev
    `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`).
    Без ключів Turnstile у продакшені форми відхиляються (захист від спаму не можна «забути»).
 5. Міграції застосовуються автоматично під час першого запиту до нового деплою (`prodMigrations`).
-6. Домен підключіть через Cloudflare (DNS, WAF). Для `elinvestments.*` → CNAME на Vercel.
+6. Домен підключіть через Cloudflare (DNS, WAF). Для домену → CNAME на Vercel.
 
 Сторінки кешуються (ISR): головна, матеріали, «Редакція», «Виправлення». Після збереження в адмінці кеш
 потрібних сторінок скидається одразу (`src/hooks/revalidate.ts`). Стрічки розділів із фільтрами, сторінки

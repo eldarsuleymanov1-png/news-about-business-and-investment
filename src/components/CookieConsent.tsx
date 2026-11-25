@@ -24,9 +24,9 @@ export type ConsentStrings = {
   analyticsDesc: string
 }
 
-export const OPEN_CONSENT_EVENT = 'el:open-consent'
+export const OPEN_CONSENT_EVENT = 'iv:open-consent'
 
-const CONSENT_CHANGED_EVENT = 'el:consent-changed'
+const CONSENT_CHANGED_EVENT = 'iv:consent-changed'
 
 /** Значение cookie как внешнее хранилище: сервер — null, клиент — текущая строка cookie. */
 const rawCookie = () =>

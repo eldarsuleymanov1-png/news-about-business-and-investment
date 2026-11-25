@@ -2133,3 +2133,47 @@ select.input {
   color: #fff;
   text-decoration: underline;
 }
+
+/* ------------------------------------------------------------------ знак IV */
+
+.logo__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo--compact,
+.footer__name {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.logo__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+.logo__mark--lg {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+}
+@media (min-width: 640px) {
+  .logo__mark--lg {
+    width: 48px;
+    height: 48px;
+    border-radius: 9px;
+    font-size: 24px;
+  }
+}

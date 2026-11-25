@@ -21,13 +21,18 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
-          <span className="footer__name">{settings.siteName || 'EL Investments'}</span>
+          <span className="footer__name">
+            <span className="logo__mark" aria-hidden="true">
+              {settings.shortName || 'IV'}
+            </span>
+            {settings.siteName || 'Invest Venture'}
+          </span>
           <span>{dict.footerDisclaimer}</span>
           {settings.publisher?.mediaRegistration && (
             <span>{settings.publisher.mediaRegistration}</span>
           )}
           <span>
-            © {year} {settings.siteName || 'EL Investments'}
+            © {year} {settings.siteName || 'Invest Venture'}
           </span>
         </div>
         <nav aria-label={dict.footerAbout} className="footer__col">

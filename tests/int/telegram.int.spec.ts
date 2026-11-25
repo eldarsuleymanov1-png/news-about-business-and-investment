@@ -12,7 +12,7 @@ let check: Material
 
 const tgOk = () =>
   new Response(
-    JSON.stringify({ ok: true, result: { message_id: 42, chat: { username: 'elinvest' } } }),
+    JSON.stringify({ ok: true, result: { message_id: 42, chat: { username: 'investventure' } } }),
     {
       headers: { 'Content-Type': 'application/json' },
     },
@@ -20,7 +20,7 @@ const tgOk = () =>
 
 beforeAll(async () => {
   process.env.TELEGRAM_BOT_TOKEN = 'test-token'
-  process.env.TELEGRAM_CHANNEL_ID = '@elinvest'
+  process.env.TELEGRAM_CHANNEL_ID = '@investventure'
   payload = await getPayload({ config: await config })
   await seedStructure(payload)
   const mk = async (role: User['role']) =>
@@ -93,16 +93,16 @@ describe('Telegram', () => {
     const fetchMock = vi.spyOn(globalThis, 'fetch').mockImplementation(async () => tgOk())
     const req = await createLocalReq({ user: { ...editor, collection: 'users' } }, payload)
     const r = await postMaterialToTelegram(payload, check.id, req)
-    expect(r).toMatchObject({ ok: true, messageUrl: 'https://t.me/elinvest/42' })
+    expect(r).toMatchObject({ ok: true, messageUrl: 'https://t.me/investventure/42' })
     const [url, init] = fetchMock.mock.calls[0]
     expect(String(url)).toMatch(/\/bottest-token\/sendMessage$/)
     expect(JSON.parse(String(init?.body))).toMatchObject({
-      chat_id: '@elinvest',
+      chat_id: '@investventure',
       parse_mode: 'HTML',
     })
 
     const saved = await payload.findByID({ collection: 'materials', id: check.id })
-    expect(saved.distribution?.telegramMessageUrl).toBe('https://t.me/elinvest/42')
+    expect(saved.distribution?.telegramMessageUrl).toBe('https://t.me/investventure/42')
     expect(saved.status).toBe('published')
 
     expect(await postMaterialToTelegram(payload, check.id, req)).toMatchObject({

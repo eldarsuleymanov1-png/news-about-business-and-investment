@@ -82,7 +82,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname) },
-    meta: { titleSuffix: ' — EL Investments CMS' },
+    meta: { titleSuffix: ' — IV · Invest Venture CMS' },
     dependencies: {
       s3ClientUploadHandler: {
         type: 'component',
